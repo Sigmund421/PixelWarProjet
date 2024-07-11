@@ -5,24 +5,37 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Variables")]
-    [SerializeField] private float _movementAcceleration = 50f;
+    [SerializeField] private float _movementAcceleration = 5f;
     [SerializeField] private float _maxMoveSpeed = 12f;
-    [SerializeField] private float _linearDrag = 10f ;
+    [SerializeField] private float _linearDrag = 1f ;
     private float _horizontalDirection;
     private bool _changingDirection => (_rb.velocity.x > 0f && _horizontalDirection < 0f) || (_rb.velocity.x < 0f && _horizontalDirection > 0f);
 
     [Header("Components")]
     private Rigidbody2D _rb;
 
+    [Header("Jump Variables")]
+    public float Jump;
+    public LayerMask ground;
+    Collider2D _col;
+    private bool isGround;
+
     
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _col = GetComponentInChildren<Collider2D>();
     }
     
     private void Update()
     {
         _horizontalDirection = GetInput().x;
+        isGround = _col.IsTouchingLayers(ground);
+
+        if(isGround && Input.GetKeyDown(KeyCode.Space))
+        {
+            _rb.AddForce(Vector2.up * Jump);
+        }
     }
 
     private void FixedUpdate()
