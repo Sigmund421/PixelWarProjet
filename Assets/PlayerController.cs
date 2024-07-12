@@ -5,11 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Variables")]
-    [SerializeField] private float _movementAcceleration = 5f;
-    [SerializeField] private float _maxMoveSpeed = 12f;
-    [SerializeField] private float _linearDrag = 1f ;
-    private float _horizontalDirection;
-    private bool _changingDirection => (_rb.velocity.x > 0f && _horizontalDirection < 0f) || (_rb.velocity.x < 0f && _horizontalDirection > 0f);
+    public float speed;
+    public float grappleMovementSpeedFactor = 0.1f; // Facteur de réduction de la vitesse pendant le grappinage
+
+    private float Move;
 
     [Header("Components")]
     private Rigidbody2D _rb;
@@ -17,63 +16,49 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Variables")]
     public float Jump;
     public LayerMask ground;
+    public float fallMultiplier = 2.5f;  // Multiplicateur de gravité pendant la chute
     Collider2D _col;
     private bool isGround;
 
-    
+    [Header("Grappling")]
+    public Tutorial_GrapplingGun grapplingGun;  // Référence au script du grappin
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponentInChildren<Collider2D>();
     }
-    
+
     private void Update()
     {
-        _horizontalDirection = GetInput().x;
-        isGround = _col.IsTouchingLayers(ground);
+        Move = Input.GetAxis("Horizontal");
 
-        if(isGround && Input.GetKeyDown(KeyCode.Space))
+        // Si le joueur est en train de grappiner, appliquez une force horizontale réduite
+        if (grapplingGun.grappleRope.isGrappling)
         {
-            _rb.AddForce(Vector2.up * Jump);
+            _rb.AddForce(new Vector2(Move * speed * grappleMovementSpeedFactor, 0), ForceMode2D.Force);
+        }
+        else
+        {
+            _rb.velocity = new Vector2(speed * Move, _rb.velocity.y);
+
+            isGround = _col.IsTouchingLayers(ground);
+
+            if (isGround && Input.GetKeyDown(KeyCode.Space))
+            {
+                _rb.AddForce(Vector2.up * Jump, ForceMode2D.Impulse);
+            }
+        }
+
+        // Appliquez le multiplicateur de gravité pendant la chute
+        if (_rb.velocity.y < 0 && !isGround)
+        {
+            _rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
 
     private void FixedUpdate()
     {
-        MoveCharacter();
-        ApplyLinearDrag();
+        // Gardez les calculs physiques ici si nécessaire
     }
-
-
-    private Vector2 GetInput()
-    {
-        return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    }
-
-    private void MoveCharacter()
-    {
-        _rb.AddForce(new Vector2(_horizontalDirection, 0f) * _movementAcceleration);
-
-        if (Mathf.Abs(_rb.velocity.x) > _maxMoveSpeed)
-        {
-            _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * _maxMoveSpeed, _rb.velocity.y);
-        }
-
-    }
-
-    private void ApplyLinearDrag()
-    {
-        if (Mathf.Abs(_horizontalDirection) < 0.4f || _changingDirection)
-        {
-            _rb.drag = _linearDrag;
-        }
-        else
-        {
-            _rb.drag = 0f;
-        }
-    }
-
-
-
-
 }

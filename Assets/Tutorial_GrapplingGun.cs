@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tutorial_GrapplingGun : MonoBehaviour
 {
+    public PlayerController script;
+
     [Header("Scripts Ref:")]
     public Tutorial_GrapplingRope grappleRope;
 
@@ -29,7 +31,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
     [Header("Distance:")]
     [SerializeField] private bool hasMaxDistance = false;
-    [SerializeField] private float maxDistnace = 20;
+    [SerializeField] private float maxDistance = 20;
 
     private enum LaunchType
     {
@@ -40,21 +42,24 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [Header("Launching:")]
     [SerializeField] private bool launchToPoint = true;
     [SerializeField] private LaunchType launchType = LaunchType.Physics_Launch;
-    [SerializeField] private float launchSpeed = 1;
+    [SerializeField] private float baseLaunchSpeed = 0.6f; // Vitesse de propulsion de base
+    private float currentLaunchSpeed;
 
     [Header("No Launch To Point")]
     [SerializeField] private bool autoConfigureDistance = false;
     [SerializeField] private float targetDistance = 3;
-    [SerializeField] private float targetFrequncy = 1;
+    [SerializeField] private float targetFrequency = 1;
 
     [HideInInspector] public Vector2 grapplePoint;
     [HideInInspector] public Vector2 grappleDistanceVector;
+
+    private int consecutiveGrapples = 0; // Compteur de grappinages consécutifs
 
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-
+        currentLaunchSpeed = baseLaunchSpeed; // Initialisation de la vitesse de propulsion
     }
 
     private void Update()
@@ -79,9 +84,9 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             {
                 if (launchType == LaunchType.Transform_Launch)
                 {
-                    Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
-                    Vector2 targetPos = grapplePoint - firePointDistnace;
-                    gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
+                    Vector2 firePointDistance = firePoint.position - gunHolder.localPosition;
+                    Vector2 targetPos = grapplePoint - firePointDistance;
+                    gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * currentLaunchSpeed);
                 }
             }
         }
@@ -90,6 +95,8 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
+            consecutiveGrapples = 0; // Réinitialiser le compteur de grappinages consécutifs
+            currentLaunchSpeed = baseLaunchSpeed; // Réinitialiser la vitesse de propulsion
         }
         else
         {
@@ -121,11 +128,15 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
             if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
             {
-                if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
+                if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistance || !hasMaxDistance)
                 {
                     grapplePoint = _hit.point;
                     grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                     grappleRope.enabled = true;
+
+                    // Augmenter la vitesse de propulsion pour les grappinages consécutifs
+                    currentLaunchSpeed = baseLaunchSpeed + (consecutiveGrapples * 2);
+                    consecutiveGrapples++;
                 }
             }
         }
@@ -137,7 +148,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         if (!launchToPoint && !autoConfigureDistance)
         {
             m_springJoint2D.distance = targetDistance;
-            m_springJoint2D.frequency = targetFrequncy;
+            m_springJoint2D.frequency = targetFrequency;
         }
         if (!launchToPoint)
         {
@@ -160,7 +171,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
                     Vector2 distanceVector = firePoint.position - gunHolder.position;
 
                     m_springJoint2D.distance = distanceVector.magnitude;
-                    m_springJoint2D.frequency = launchSpeed;
+                    m_springJoint2D.frequency = currentLaunchSpeed;
                     m_springJoint2D.enabled = true;
                     break;
                 case LaunchType.Transform_Launch:
@@ -176,9 +187,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         if (firePoint != null && hasMaxDistance)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(firePoint.position, maxDistnace);
+            Gizmos.DrawWireSphere(firePoint.position, maxDistance);
         }
     }
-
-
 }
