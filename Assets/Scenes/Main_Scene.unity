@@ -1381,17 +1381,53 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.000045776367
-      outSlope: 0.000045776367
+      inSlope: -1.8306302
+      outSlope: -1.8306302
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.07533791
+      value: -0.13791585
+      inSlope: -0.003170967
+      outSlope: -0.003170967
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.17525333
+      value: 0.044358686
+      inSlope: -0.09746343
+      outSlope: -0.09746343
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2625963
+      value: -0.13200557
+      inSlope: 0.027779937
+      outSlope: 0.027779937
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4427588
+      value: 0.24179107
+      inSlope: 0.82047486
+      outSlope: 0.82047486
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 0.000045776367
-      inSlope: 0.000045776367
-      outSlope: 0.000045776367
+      inSlope: -0.43382522
+      outSlope: -0.43382522
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1399,7 +1435,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  StartWaveSize: 2
+  StartWaveSize: 1
   ropeProgressionCurve:
     serializedVersion: 2
     m_Curve:
@@ -1424,7 +1460,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ropeProgressionSpeed: 20
+  ropeProgressionSpeed: 7.0390997
   isGrappling: 1
 --- !u!1 &671766072
 GameObject:
