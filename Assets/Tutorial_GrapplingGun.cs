@@ -54,12 +54,14 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [HideInInspector] public Vector2 grappleDistanceVector;
 
     private int consecutiveGrapples = 0; // Compteur de grappinages consécutifs
+    private float originalGravityScale;
 
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
         currentLaunchSpeed = baseLaunchSpeed; // Initialisation de la vitesse de propulsion
+        originalGravityScale = m_rigidbody.gravityScale; // Stocker l'échelle de gravité d'origine
     }
 
     private void Update()
@@ -94,7 +96,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            m_rigidbody.gravityScale = 1;
+            m_rigidbody.gravityScale = originalGravityScale; // Réinitialiser la gravité du joueur après le grappin
             consecutiveGrapples = 0; // Réinitialiser le compteur de grappinages consécutifs
             currentLaunchSpeed = baseLaunchSpeed; // Réinitialiser la vitesse de propulsion
 
@@ -178,7 +180,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
                     m_springJoint2D.enabled = true;
                     break;
                 case LaunchType.Transform_Launch:
-                    m_rigidbody.gravityScale = 0;
+                    m_rigidbody.gravityScale = 0; // Désactiver la gravité pendant le grappin
                     m_rigidbody.velocity = Vector2.zero;
                     break;
             }
