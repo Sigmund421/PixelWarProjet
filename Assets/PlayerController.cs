@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Variables")]
-    public float speed = 10f;
-    public float grappleMovementSpeedFactor = 0.1f; // Facteur de réduction de la vitesse pendant le grappinage
+    public float speed = 18f;
+    public float grappleMovementSpeedFactor = 0.8f; // Facteur de réduction de la vitesse pendant le grappinage
     public float airControlFactor = 0.8f; // Facteur de contrôle en l'air
-    public float maxSpeed = 10f; // Vitesse maximale
+    public float maxSpeed = 18f; // Vitesse maximale
     public float decelerationFactor = 0.95f; // Facteur de décélération pour un arrêt plus fluide
 
     private float moveInput;
@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
 
     [Header("Jump Variables")]
-    public float jumpForce = 10f;
+    public float jumpForce = 6f;
     public LayerMask ground;
-    public float fallMultiplier = 2.5f; // Multiplicateur de gravité pendant la chute
+    public float fallMultiplier = 2f; // Multiplicateur de gravité pendant la chute
     Collider2D _col;
     private bool isGround;
 
