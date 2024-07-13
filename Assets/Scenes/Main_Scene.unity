@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a161af343779f2b4ab004f673386245f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 13
   grappleMovementSpeedFactor: 0.1
   Jump: 5
   ground:
@@ -1811,7 +1811,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ropeProgressionSpeed: 10
+  ropeProgressionSpeed: 20
   isGrappling: 1
 --- !u!1 &707549560
 GameObject:
@@ -2233,7 +2233,7 @@ MonoBehaviour:
   maxDistance: 10
   launchToPoint: 1
   launchType: 1
-  baseLaunchSpeed: 0.6
+  baseLaunchSpeed: 0.8
   autoConfigureDistance: 0
   targetDistance: 3
   targetFrequency: 1
@@ -3028,7 +3028,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.44
+  orthographic size: 10.95
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

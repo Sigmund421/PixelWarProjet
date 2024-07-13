@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Move = Input.GetAxis("Horizontal");
+       Move = Input.GetAxis("Horizontal");
 
         // Si le joueur est en train de grappiner, appliquez une force horizontale réduite
         if (grapplingGun.grappleRope.isGrappling)

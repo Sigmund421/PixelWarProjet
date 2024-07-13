@@ -42,7 +42,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [Header("Launching:")]
     [SerializeField] private bool launchToPoint = true;
     [SerializeField] private LaunchType launchType = LaunchType.Physics_Launch;
-    [SerializeField] private float baseLaunchSpeed = 0.6f; // Vitesse de propulsion de base
+    [SerializeField] private float baseLaunchSpeed = 0.8f; // Vitesse de propulsion de base
     private float currentLaunchSpeed;
 
     [Header("No Launch To Point")]
@@ -97,6 +97,9 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             m_rigidbody.gravityScale = 1;
             consecutiveGrapples = 0; // Réinitialiser le compteur de grappinages consécutifs
             currentLaunchSpeed = baseLaunchSpeed; // Réinitialiser la vitesse de propulsion
+
+            // Conservation de la vélocité
+            m_rigidbody.velocity = m_rigidbody.velocity;
         }
         else
         {
