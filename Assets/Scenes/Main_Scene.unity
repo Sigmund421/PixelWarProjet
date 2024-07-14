@@ -2668,6 +2668,9 @@ MonoBehaviour:
   grappleRope: {fileID: 655521412}
   grappleToAll: 0
   grappableLayerNumber: 9
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   m_camera: {fileID: 1848191666}
   gunHolder: {fileID: 50220825}
   gunPivot: {fileID: 191354282}
@@ -2677,10 +2680,10 @@ MonoBehaviour:
   rotateOverTime: 0
   rotationSpeed: 18.3
   hasMaxDistance: 1
-  maxDistance: 100
+  maxDistance: 20
   launchToPoint: 1
   launchType: 1
-  baseLaunchSpeed: 0.8
+  baseLaunchSpeed: 0.7
   autoConfigureDistance: 0
   targetDistance: 3
   targetFrequency: 1
@@ -3754,6 +3757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121d7b8cc46dcda41af6c47f81321eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 50220825}
 --- !u!1 &1850063793
 GameObject:
   m_ObjectHideFlags: 0

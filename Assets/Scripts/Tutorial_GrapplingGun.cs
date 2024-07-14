@@ -12,6 +12,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [Header("Layers Settings:")]
     [SerializeField] private bool grappleToAll = false;
     [SerializeField] private int grappableLayerNumber = 9;
+    [SerializeField] private LayerMask ignoreLayer; // Ajouter une LayerMask pour ignorer les layers
 
     [Header("Main Camera:")]
     public Camera m_camera;
@@ -128,21 +129,23 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     void SetGrapplePoint()
     {
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
-        if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
+        RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, Mathf.Infinity, ~ignoreLayer);
+        while (_hit.transform != null && _hit.transform.gameObject.layer == LayerMask.NameToLayer("Pickup"))
         {
-            RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
-            if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
+            // Continuer le raycast depuis le point de contact actuel pour ignorer les pickups
+            _hit = Physics2D.Raycast(_hit.point + distanceVector.normalized * 0.1f, distanceVector.normalized, Mathf.Infinity, ~ignoreLayer);
+        }
+        if (_hit.transform != null && (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll))
+        {
+            if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistance || !hasMaxDistance)
             {
-                if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistance || !hasMaxDistance)
-                {
-                    grapplePoint = _hit.point;
-                    grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
-                    grappleRope.enabled = true;
+                grapplePoint = _hit.point;
+                grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
+                grappleRope.enabled = true;
 
-                    // Augmenter la vitesse de propulsion pour les grappinages consécutifs
-                    currentLaunchSpeed = baseLaunchSpeed + (consecutiveGrapples * 2);
-                    consecutiveGrapples++;
-                }
+                // Augmenter la vitesse de propulsion pour les grappinages consécutifs
+                currentLaunchSpeed = baseLaunchSpeed + (consecutiveGrapples * 2);
+                consecutiveGrapples++;
             }
         }
     }
