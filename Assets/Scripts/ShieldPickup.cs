@@ -9,7 +9,7 @@ public class ShieldPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         ShieldSystem shieldSystem = other.GetComponent<ShieldSystem>();
-        if (shieldSystem != null)
+        if (shieldSystem != null && shieldSystem.GetCurrentShield() < shieldSystem.maxShield)
         {
             shieldSystem.RechargeShield(shieldAmount);
             Destroy(gameObject); // Détruire l'objet de récupération après l'utilisation

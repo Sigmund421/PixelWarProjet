@@ -9,11 +9,10 @@ public class HealthPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         HealthSystem healthSystem = other.GetComponent<HealthSystem>();
-        if (healthSystem != null)
+        if (healthSystem != null && healthSystem.GetCurrentHealth() < healthSystem.maxHealth)
         {
             healthSystem.Heal(healAmount);
             Destroy(gameObject); // Détruire l'objet de récupération après l'utilisation
         }
     }
 }
-
