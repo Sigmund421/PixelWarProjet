@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float lifeTime = 3f;
 
     private Rigidbody2D rb;
+    public float damageAmount = 20f;
 
     private void Start()
     {
@@ -23,6 +24,31 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        ShieldSystem shieldSystem = other.GetComponent<ShieldSystem>();
+        HealthSystem healthSystem = other.GetComponent<HealthSystem>();
 
+        if (shieldSystem != null && healthSystem != null)
+        {
+            if (shieldSystem.GetCurrentShield() > 0)
+            {
+                shieldSystem.TakeShieldDamage(damageAmount);
+                DestroyGameObject();
+            }
+            else
+            {
+                healthSystem.TakeDamage(damageAmount);
+                DestroyGameObject();
+            }
+        }
+
+        
+    }
+
+    void DestroyGameObject()
+    {
+        Destroy(gameObject);
+    }
 
 }
