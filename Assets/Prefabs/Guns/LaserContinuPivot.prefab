@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.60258484, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,15 +99,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3407379422365555065, guid: 49a3f15ca3081c345970249c1d9655c2, type: 3}
   firingPoint: {fileID: 6091549426818907313}
-  fireRate: 0.15
+  fireRate: 0.2
   shotsPerReload: 20
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 0}
   gunPivot: {fileID: 4453897925558861309}
   rotateOverTime: 0
-  rotationSpeed: 18.3
+  rotationSpeed: 30
   ammoBar: {fileID: 0}
+  precision: 1
   m_camera: {fileID: 0}
 --- !u!1 &4087673281003287680
 GameObject:
@@ -119,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4453897925558861309}
   m_Layer: 0
-  m_Name: GunBasePivot
+  m_Name: LaserContinuPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

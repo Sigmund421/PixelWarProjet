@@ -28,6 +28,14 @@ public class GunBase : MonoBehaviour
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
 
+    [Header("Precision:")]
+    [Range(0f, 1f)]
+    [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+
+    [Header("Crosshair:")]
+    [SerializeField] protected GameObject crosshair; // Crosshair GameObject
+    [SerializeField] protected float maxCrosshairDistance = 5f; // Max distance for the crosshair
+
     public Camera m_camera;
 
     protected float fireTimer;
@@ -43,12 +51,14 @@ public class GunBase : MonoBehaviour
             ammoBar.maxValue = shotsPerReload;
             ammoBar.value = currentAmmo;
         }
+        Cursor.visible = false; // Hide the default cursor
     }
 
     void Update()
     {
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         RotateGun(mousePos, true);
+        UpdateCrosshairPosition(mousePos);
 
         if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
         {
@@ -78,7 +88,13 @@ public class GunBase : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+        // Calculate a random spread angle based on precision
+        float spreadAngle = (1f - precision) * 10f; // Adjust the multiplier as needed for the spread
+        float angle = Random.Range(-spreadAngle, spreadAngle);
+
+        // Apply the spread angle to the firing direction
+        Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
+        Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
     }
 
     private IEnumerator Reload()
@@ -114,6 +130,22 @@ public class GunBase : MonoBehaviour
         else
         {
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    }
+
+    private void UpdateCrosshairPosition(Vector2 mousePos)
+    {
+        Vector2 gunPosition = gunHolder.position;
+        Vector2 direction = (mousePos - gunPosition).normalized;
+        float distance = Vector2.Distance(mousePos, gunPosition);
+
+        if (distance > maxCrosshairDistance)
+        {
+            crosshair.transform.position = gunPosition + direction * maxCrosshairDistance;
+        }
+        else
+        {
+            crosshair.transform.position = mousePos;
         }
     }
 }
