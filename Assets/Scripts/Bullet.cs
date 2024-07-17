@@ -10,18 +10,30 @@ public class Bullet : MonoBehaviour
     [Range(1, 100)]
     [SerializeField] private float lifeTime = 3f;
 
+    [SerializeField] private float maxRange = 10f; // Maximum range of the bullet
+
     private Rigidbody2D rb;
     public float damageAmount = 20f;
+
+    private Vector3 startPosition;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        startPosition = transform.position; // Save the starting position
         Destroy(gameObject, lifeTime);
     }
 
     private void FixedUpdate()
     {
         rb.velocity = transform.up * speed;
+
+        // Check the distance traveled
+        float distanceTraveled = Vector3.Distance(startPosition, transform.position);
+        if (distanceTraveled >= maxRange)
+        {
+            DestroyGameObject();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,13 +54,10 @@ public class Bullet : MonoBehaviour
                 DestroyGameObject();
             }
         }
-
-        
     }
 
     void DestroyGameObject()
     {
         Destroy(gameObject);
     }
-
 }

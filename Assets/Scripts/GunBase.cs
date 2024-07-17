@@ -5,37 +5,36 @@ using UnityEngine.UI;
 
 public class GunBase : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firingPoint;
+    [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] protected Transform firingPoint;
     [Range(0.1f, 10f)]
-    [SerializeField] private float fireRate = 0.2f;
+    [SerializeField] protected float fireRate = 0.2f;
 
     [Header("Ammo")]
     [Range(1, 100)]
-    [SerializeField] private int shotsPerReload = 25;
+    [SerializeField] protected int shotsPerReload = 25;
     [Range(0.1f, 5f)]
-    [SerializeField] private float reloadTime = 2f;
+    [SerializeField] protected float reloadTime = 2f;
     [Range(0.1f, 5f)]
-    [SerializeField] private float reloadDelay = 0.5f;
+    [SerializeField] protected float reloadDelay = 0.5f;
 
     public Transform gunHolder;
     public Transform gunPivot;
 
     [Header("Rotation:")]
-    [SerializeField] private bool rotateOverTime = true;
-    [Range(0, 60)][SerializeField] private float rotationSpeed = 4;
+    [SerializeField] protected bool rotateOverTime = true;
+    [Range(0, 60)][SerializeField] protected float rotationSpeed = 4;
 
     [Header("UI")]
-    [SerializeField] private Slider ammoBar;
+    [SerializeField] protected Slider ammoBar;
 
     public Camera m_camera;
 
-    private float fireTimer;
-    private int currentAmmo;
-    private bool isReloading = false;
-    private float reloadTimer;
+    protected float fireTimer;
+    protected int currentAmmo;
+    protected bool isReloading = false;
+    protected float reloadTimer;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentAmmo = shotsPerReload;
@@ -46,7 +45,6 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
@@ -58,7 +56,7 @@ public class GunBase : MonoBehaviour
             fireTimer = fireRate;
             currentAmmo--;
             UpdateAmmoBar();
-            reloadTimer = 0f; // Reset reload timer when shooting
+            reloadTimer = 0f;
         }
         else
         {
@@ -78,7 +76,7 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    protected virtual void Shoot()
     {
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
     }
@@ -93,7 +91,7 @@ public class GunBase : MonoBehaviour
             UpdateAmmoBar();
         }
         isReloading = false;
-        reloadTimer = 0f; // Reset reload timer when reloading is complete
+        reloadTimer = 0f;
     }
 
     private void UpdateAmmoBar()
