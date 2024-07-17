@@ -86,4 +86,17 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector2(0, _rb.velocity.y);
         }
     }
+
+    public void EnableControls()
+    {
+        // Enable player controls, e.g., movement, shooting, etc.
+        enabled = true;
+    }
+
+    public void DisableControls()
+    {
+        // Disable player controls, e.g., movement, shooting, etc.
+        enabled = false;
+    }
+
 }

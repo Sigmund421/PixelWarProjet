@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.3018868, g: 0, b: 0.059383467, a: 1}
+  m_Color: {r: 0.3490566, g: 0, b: 0.06799802, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -109,6 +109,8 @@ MonoBehaviour:
   rotationSpeed: 30
   ammoBar: {fileID: 0}
   precision: 1
+  crosshair: {fileID: 0}
+  maxCrosshairDistance: 5
   m_camera: {fileID: 0}
 --- !u!1 &4087673281003287680
 GameObject:
