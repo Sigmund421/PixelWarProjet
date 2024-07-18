@@ -9,16 +9,19 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void Start()
     {
-        EquipWeapon(primaryWeapon);
+        if (primaryWeapon != null)
+        {
+            EquipWeapon(primaryWeapon);
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && primaryWeapon != null)
         {
             EquipWeapon(primaryWeapon);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && secondaryWeapon != null)
         {
             EquipWeapon(secondaryWeapon);
         }
@@ -27,7 +30,9 @@ public class PlayerWeaponManager : MonoBehaviour
     void EquipWeapon(GameObject weapon)
     {
         if (currentWeapon != null)
+        {
             Destroy(currentWeapon);
+        }
 
         currentWeapon = Instantiate(weapon, weaponHolder.position, weaponHolder.rotation, weaponHolder);
     }
@@ -43,4 +48,3 @@ public class PlayerWeaponManager : MonoBehaviour
         secondaryWeapon = weapon;
     }
 }
-

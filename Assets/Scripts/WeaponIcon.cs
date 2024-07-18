@@ -1,17 +1,19 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class WeaponIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public int weaponIndex;
-    public int slot;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    private Vector2 originalPosition;
+    private ShopManager shopManager;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        shopManager = FindObjectOfType<ShopManager>();
 
         if (canvasGroup == null)
         {
@@ -19,10 +21,11 @@ public class WeaponIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (canvasGroup != null)
+        if (shopManager != null && shopManager.IsShopOpen() && shopManager.HasPurchasedWeapon(weaponIndex))
         {
+            originalPosition = rectTransform.anchoredPosition;
             canvasGroup.alpha = 0.6f; // Rendre l'icône semi-transparente
             canvasGroup.blocksRaycasts = false; // Permettre à l'icône d'être déplacée
         }
@@ -30,15 +33,27 @@ public class WeaponIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta; // Déplacer l'icône avec le curseur
+        if (shopManager != null && shopManager.IsShopOpen() && shopManager.HasPurchasedWeapon(weaponIndex))
+        {
+            rectTransform.anchoredPosition += eventData.delta; // Déplacer l'icône avec le curseur
+        }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 1f; // Restaurer l'opacité complète
             canvasGroup.blocksRaycasts = true; // Restaurer le blocage des rayons
+        }
+
+        if (shopManager != null)
+        {
+            if (!shopManager.OnDropWeapon(this))
+            {
+                // Revert to original position if the drop was not successful
+                rectTransform.anchoredPosition = originalPosition;
+            }
         }
     }
 }

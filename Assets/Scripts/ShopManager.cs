@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class ShopManager : MonoBehaviour, IDropHandler
+public class ShopManager : MonoBehaviour
 {
     public GameObject shopUI;
     public PlayerEconomy playerEconomy;
@@ -44,63 +44,62 @@ public class ShopManager : MonoBehaviour, IDropHandler
 
         if (isShopOpen)
         {
-            // Désactiver les actions du joueur et afficher le curseur
-            player.GetComponent<PlayerController>().enabled = false;
+            // Afficher le curseur
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            crosshairImage.enabled = false;
         }
         else
         {
-            // Activer les actions du joueur et cacher le curseur
-            player.GetComponent<PlayerController>().enabled = true;
+            // Cacher le curseur
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            crosshairImage.enabled = true;
         }
+    }
+
+    public bool IsShopOpen()
+    {
+        return isShopOpen;
     }
 
     public void BuyWeapon(int weaponIndex)
     {
-        if (playerEconomy.SpendMoney(weaponPrices[weaponIndex]))
+        if (!purchasedWeapons.ContainsKey(weaponIndex) && playerEconomy.SpendMoney(weaponPrices[weaponIndex]))
         {
             // Ajouter l'arme au dictionnaire des armes achetées
-            if (!purchasedWeapons.ContainsKey(weaponIndex))
-            {
-                purchasedWeapons.Add(weaponIndex, weaponPrefabs[weaponIndex]);
-            }
+            purchasedWeapons.Add(weaponIndex, weaponPrefabs[weaponIndex]);
             Debug.Log("Bought weapon: " + weaponPrefabs[weaponIndex].name);
         }
         else
         {
-            Debug.Log("Not enough money to buy weapon: " + weaponPrefabs[weaponIndex].name);
+            Debug.Log("Not enough money to buy weapon or weapon already purchased: " + weaponPrefabs[weaponIndex].name);
         }
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public bool OnDropWeapon(WeaponIcon weaponIcon)
     {
-        WeaponIcon weaponIcon = eventData.pointerDrag.GetComponent<WeaponIcon>();
+        if (!IsShopOpen() || !HasPurchasedWeapon(weaponIcon.weaponIndex))
+            return false;
 
-        if (weaponIcon != null)
+        RectTransform slotTransform = null;
+
+        if (RectTransformUtility.RectangleContainsScreenPoint(primaryWeaponSlot.GetComponent<RectTransform>(), Input.mousePosition))
         {
-            RectTransform slotTransform = null;
-
-            if (RectTransformUtility.RectangleContainsScreenPoint(primaryWeaponSlot.GetComponent<RectTransform>(), Input.mousePosition))
-            {
-                slotTransform = primaryWeaponSlot.GetComponent<RectTransform>();
-                EquipWeapon(1, purchasedWeapons[weaponIcon.weaponIndex]);
-            }
-            else if (RectTransformUtility.RectangleContainsScreenPoint(secondaryWeaponSlot.GetComponent<RectTransform>(), Input.mousePosition))
-            {
-                slotTransform = secondaryWeaponSlot.GetComponent<RectTransform>();
-                EquipWeapon(2, purchasedWeapons[weaponIcon.weaponIndex]);
-            }
-
-            if (slotTransform != null)
-            {
-                weaponIcon.transform.position = slotTransform.position;
-            }
+            slotTransform = primaryWeaponSlot.GetComponent<RectTransform>();
+            EquipWeapon(1, purchasedWeapons[weaponIcon.weaponIndex]);
         }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(secondaryWeaponSlot.GetComponent<RectTransform>(), Input.mousePosition))
+        {
+            slotTransform = secondaryWeaponSlot.GetComponent<RectTransform>();
+            EquipWeapon(2, purchasedWeapons[weaponIcon.weaponIndex]);
+        }
+
+        if (slotTransform != null)
+        {
+            weaponIcon.transform.position = slotTransform.position;
+            return true;
+        }
+
+        return false;
     }
 
     public void EquipWeapon(int slot, GameObject weapon)
@@ -119,5 +118,19 @@ public class ShopManager : MonoBehaviour, IDropHandler
             Instantiate(weapon, secondaryWeaponSlot);
             player.GetComponent<PlayerWeaponManager>().SetSecondaryWeapon(weapon);
         }
+    }
+
+    public bool HasPurchasedWeapon(int weaponIndex)
+    {
+        return purchasedWeapons.ContainsKey(weaponIndex);
+    }
+
+    public GameObject GetPurchasedWeapon(int weaponIndex)
+    {
+        if (purchasedWeapons.TryGetValue(weaponIndex, out GameObject weapon))
+        {
+            return weapon;
+        }
+        return null;
     }
 }

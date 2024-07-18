@@ -97,21 +97,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d26398213822c4a9bfc0b332d7782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3407379422365555065, guid: 49a3f15ca3081c345970249c1d9655c2, type: 3}
+  bulletPrefab: {fileID: 3407379422365555065, guid: 359b17940fcb4084b9b67b9be4a80052, type: 3}
   firingPoint: {fileID: 6091549426818907313}
   fireRate: 0.1
   shotsPerReload: 30
   reloadTime: 2
   reloadDelay: 0.5
-  gunHolder: {fileID: 0}
+  gunHolder: {fileID: 744835341577750064, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
   gunPivot: {fileID: 4453897925558861309}
   rotateOverTime: 0
   rotationSpeed: 30
-  ammoBar: {fileID: 0}
+  ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
   precision: 1
-  crosshair: {fileID: 0}
+  crosshair: {fileID: 2737798648263773622, guid: 76859773c78e0104a92bba0d73e1204f, type: 3}
   maxCrosshairDistance: 5
-  m_camera: {fileID: 0}
+  m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
 --- !u!1 &4087673281003287680
 GameObject:
   m_ObjectHideFlags: 0
