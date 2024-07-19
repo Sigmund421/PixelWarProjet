@@ -41,6 +41,11 @@ public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (shopManager == null || !shopManager.HasPurchasedWeapon(weaponIndex))
+        {
+            return; // Ne rien faire si l'arme n'a pas été achetée
+        }
+
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 1f; // Restaurer l'opacité complète
@@ -51,7 +56,7 @@ public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         {
             if (!shopManager.OnDropWeapon(this))
             {
-                // Revert to original position if the drop was not successful
+                // Revenir à la position initiale si le drop n'a pas été réussi
                 rectTransform.anchoredPosition = originalPosition;
             }
         }
