@@ -48,7 +48,10 @@ public class GunBase : MonoBehaviour
             ammoBar.maxValue = shotsPerReload;
             ammoBar.value = currentAmmo;
         }
+
         
+
+
     }
 
     void Update()
@@ -64,6 +67,7 @@ public class GunBase : MonoBehaviour
             currentAmmo--;
             UpdateAmmoBar();
             reloadTimer = 0f;
+            
         }
         else
         {
