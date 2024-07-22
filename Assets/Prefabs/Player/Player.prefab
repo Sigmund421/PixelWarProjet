@@ -781,7 +781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 154567647359651265, guid: cde3c2aa2e8c63842a3b691d3d38e226, type: 3}
 --- !u!114 &7501776055277705854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,7 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxShield: 50
   shieldVisual: {fileID: 4518058645199592654}
-  shieldBar: {fileID: 0}
+  shieldBar: {fileID: 5980435531470278531, guid: 1b5328edf24017243a95272781ff2447, type: 3}
 --- !u!114 &249515675621621976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c150e71f81fbb844b424489300753c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopUI: {fileID: 0}
+  shopUI: {fileID: 8713307049365790824, guid: 5d6c1c305e86a584fa670908fbdb6df9, type: 3}
   playerEconomy: {fileID: 427687596303140147}
   weaponPrefabs:
   - {fileID: 4087673281003287680, guid: 627b849d5fcd3a248ae89a9851cd890d, type: 3}
@@ -829,10 +829,9 @@ MonoBehaviour:
   - {fileID: 4087673281003287680, guid: f95187ff8f2e5c9448536b8a4ddb72db, type: 3}
   - {fileID: 4087673281003287680, guid: 3b989da8abb10a24d99093c67aa43e9a, type: 3}
   weaponPrices: 050000000a0000000f00000014000000190000001e00000023000000280000002d00000032000000370000003c00000041000000460000004b00000050000000
-  primaryWeaponSlot: {fileID: 0}
-  secondaryWeaponSlot: {fileID: 0}
+  primaryWeaponSlot: {fileID: 6740689681152972230, guid: 352583b2fef997641b2a62f3df95bda3, type: 3}
+  secondaryWeaponSlot: {fileID: 2583839645661516595, guid: 7418de47a884b844c96907a6c0b60ee9, type: 3}
   player: {fileID: 8704545292566497679}
-  crosshairImage: {fileID: 0}
 --- !u!114 &427687596303140147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
-  moneyText: {fileID: 0}
+  moneyText: {fileID: 7193728230625453036, guid: 9f5bc5df49e8dea428907826399f8da0, type: 3}
 --- !u!114 &7247028055327278740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,6 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66213d315f26b549a53eb030da9c11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryWeapon: {fileID: 8216386270920093505, guid: 21168bc934a8c124ebcf9f5f4336b317, type: 3}
+  primaryWeapon: {fileID: 8055455918253340666, guid: 3c5e1ff3e6dcfb7459c5744ec91cc6fd, type: 3}
   secondaryWeapon: {fileID: 0}
   weaponHolder: {fileID: 744835341577750064}
