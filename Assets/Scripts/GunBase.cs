@@ -31,9 +31,7 @@ public class GunBase : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
 
-    [Header("Crosshair:")]
-    [SerializeField] protected GameObject crosshair; // Crosshair GameObject
-    [SerializeField] protected float maxCrosshairDistance = 5f; // Max distance for the crosshair
+    
 
     public Camera m_camera;
 
@@ -50,14 +48,14 @@ public class GunBase : MonoBehaviour
             ammoBar.maxValue = shotsPerReload;
             ammoBar.value = currentAmmo;
         }
-        Cursor.visible = false; // Hide the default cursor
+        
     }
 
     void Update()
     {
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         RotateGun(mousePos, true);
-        UpdateCrosshairPosition(mousePos);
+        
 
         if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
         {
@@ -132,19 +130,5 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    private void UpdateCrosshairPosition(Vector2 mousePos)
-    {
-        Vector2 gunPosition = gunHolder.position;
-        Vector2 direction = (mousePos - gunPosition).normalized;
-        float distance = Vector2.Distance(mousePos, gunPosition);
-
-        if (distance > maxCrosshairDistance)
-        {
-            crosshair.transform.position = gunPosition + direction * maxCrosshairDistance;
-        }
-        else
-        {
-            crosshair.transform.position = mousePos;
-        }
-    }
+    
 }

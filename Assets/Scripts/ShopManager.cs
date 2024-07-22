@@ -12,7 +12,7 @@ public class ShopManager : MonoBehaviour
     public Transform primaryWeaponSlot;
     public Transform secondaryWeaponSlot;
     public GameObject player;
-    public Image crosshairImage; // Assigner l'image du crosshair dans l'inspecteur
+    
 
     private bool isShopOpen = false;
     private Dictionary<int, GameObject> purchasedWeapons = new Dictionary<int, GameObject>();
@@ -42,18 +42,7 @@ public class ShopManager : MonoBehaviour
         isShopOpen = !isShopOpen;
         shopUI.SetActive(isShopOpen);
 
-        if (isShopOpen)
-        {
-            // Afficher le curseur
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            // Cacher le curseur
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        
     }
 
     public bool IsShopOpen()
