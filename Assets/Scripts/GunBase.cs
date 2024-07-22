@@ -31,8 +31,6 @@ public class GunBase : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
 
-    
-
     public Camera m_camera;
 
     protected float fireTimer;
@@ -48,17 +46,12 @@ public class GunBase : MonoBehaviour
             ammoBar.maxValue = shotsPerReload;
             ammoBar.value = currentAmmo;
         }
-
-        
-
-
     }
 
     void Update()
     {
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         RotateGun(mousePos, true);
-        
 
         if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
         {
@@ -67,7 +60,6 @@ public class GunBase : MonoBehaviour
             currentAmmo--;
             UpdateAmmoBar();
             reloadTimer = 0f;
-            
         }
         else
         {
@@ -122,7 +114,6 @@ public class GunBase : MonoBehaviour
     private void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
     {
         Vector3 distanceVector = lookPoint - gunPivot.position;
-
         float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
         if (rotateOverTime && allowRotationOverTime)
         {
@@ -133,6 +124,4 @@ public class GunBase : MonoBehaviour
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
-
-    
 }

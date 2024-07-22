@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8676917873668492400}
   - component: {fileID: 802056545767656169}
   - component: {fileID: 6940783178500522480}
-  - component: {fileID: 7635640961208312938}
+  - component: {fileID: 4794014454550680900}
   m_Layer: 0
   m_Name: PacksBullet
   m_TagString: Untagged
@@ -149,7 +149,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1.11}
   m_Direction: 0
---- !u!114 &7635640961208312938
+--- !u!114 &4794014454550680900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,10 +158,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3407379422365555065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab72b651f2862d8418b6aefcb5441173, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b985f1aa262c2047b02889e6eb2872c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  lifeTime: 20
-  maxRange: 100
-  damageAmount: 20
+  lifeTime: 4
+  explosionDamage: 10
+  splashRange: 5
+  maxRange: 10
+  damageAmount: 15

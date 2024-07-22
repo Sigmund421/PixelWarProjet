@@ -163,5 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 90
   lifeTime: 20
+  explosionDamage: 0
+  splashRange: 0
   maxRange: 100
   damageAmount: 8

@@ -57,8 +57,8 @@ Transform:
   m_GameObject: {fileID: 3729911019307692687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.01, y: 0, z: 0}
-  m_LocalScale: {x: 0.7025742, y: 0.8921578, z: 1.7843156}
+  m_LocalPosition: {x: 0.983, y: 0, z: 0}
+  m_LocalScale: {x: 1.9453125, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4724155916049506602}
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9450981, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.29411766, b: 0.93725497, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5150708614009455629}
   - component: {fileID: 7329446695768336004}
   m_Layer: 0
-  m_Name: PacksGunHolder
+  m_Name: DragunovHolder
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d26398213822c4a9bfc0b332d7782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3407379422365555065, guid: 7e0cb6ae8ebbc1543859c1f0293b17d2, type: 3}
+  bulletPrefab: {fileID: 3407379422365555065, guid: d29f7672e92fa4d44a85652a077e766a, type: 3}
   firingPoint: {fileID: 4724155916049506602}
-  fireRate: 0.2
-  shotsPerReload: 25
+  fireRate: 1
+  shotsPerReload: 15
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}
@@ -204,5 +204,5 @@ MonoBehaviour:
   rotateOverTime: 0
   rotationSpeed: 30
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
-  precision: 0.9
+  precision: 0.8
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
