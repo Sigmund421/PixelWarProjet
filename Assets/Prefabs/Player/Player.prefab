@@ -812,18 +812,18 @@ MonoBehaviour:
   shopUI: {fileID: 8713307049365790824, guid: 5d6c1c305e86a584fa670908fbdb6df9, type: 3}
   playerEconomy: {fileID: 427687596303140147}
   weaponPrefabs:
-  - {fileID: 4087673281003287680, guid: 627b849d5fcd3a248ae89a9851cd890d, type: 3}
-  - {fileID: 4087673281003287680, guid: f279b37d90dd4ac4f889495ce1bee5fd, type: 3}
-  - {fileID: 4087673281003287680, guid: c7b1b3cc3c376a94cb88e2129ef203d5, type: 3}
+  - {fileID: 8055455918253340666, guid: 138057c9c3a627b46a9f7efd1b479bf5, type: 3}
+  - {fileID: 8055455918253340666, guid: c1c4b36828efae147aee71550b77c295, type: 3}
+  - {fileID: 8055455918253340666, guid: 12ac502a1e611e54d9496e5d812f7d6f, type: 3}
   - {fileID: 4087673281003287680, guid: 26c2a1e2b0de5ec44ab44eda0734a3e0, type: 3}
-  - {fileID: 4087673281003287680, guid: af94626e13e6a424a9724fd62af9ba68, type: 3}
+  - {fileID: 8055455918253340666, guid: 823904589fa6f064cb22721768d2974f, type: 3}
   - {fileID: 4087673281003287680, guid: 69033912d410dda418b2ffa45e482ffb, type: 3}
-  - {fileID: 4087673281003287680, guid: 0e5fa76f208479b4e89c222e5a05789e, type: 3}
+  - {fileID: 8055455918253340666, guid: eab5c9ca5c89ed64f90db6ddd064530e, type: 3}
   - {fileID: 4087673281003287680, guid: 6f8c80a0b1daab043bedebf1402b9412, type: 3}
   - {fileID: 4087673281003287680, guid: b7b75249af0ee404aa3dcfae62dfd33c, type: 3}
   - {fileID: 4087673281003287680, guid: 45c0b8a1a8c7daf48987ee7817c1c263, type: 3}
   - {fileID: 4087673281003287680, guid: c6d703aa9de3e5248a2cd3eb416217fd, type: 3}
-  - {fileID: 4087673281003287680, guid: 6edd34f976694d24c983907352fc52ca, type: 3}
+  - {fileID: 8055455918253340666, guid: 9f3a6893b46da92468c10f79db6606cc, type: 3}
   - {fileID: 4087673281003287680, guid: b0ad6eb152efede40888a73bed7fc3de, type: 3}
   - {fileID: 4087673281003287680, guid: 587808be4fa9d954b8057acc2f7ec189, type: 3}
   - {fileID: 4087673281003287680, guid: f95187ff8f2e5c9448536b8a4ddb72db, type: 3}
@@ -832,6 +832,7 @@ MonoBehaviour:
   primaryWeaponSlot: {fileID: 6740689681152972230, guid: 352583b2fef997641b2a62f3df95bda3, type: 3}
   secondaryWeaponSlot: {fileID: 2583839645661516595, guid: 7418de47a884b844c96907a6c0b60ee9, type: 3}
   player: {fileID: 8704545292566497679}
+  crosshairImage: {fileID: 0}
 --- !u!114 &427687596303140147
 MonoBehaviour:
   m_ObjectHideFlags: 0

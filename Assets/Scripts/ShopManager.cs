@@ -46,13 +46,13 @@ public class ShopManager : MonoBehaviour
         {
             // Afficher le curseur
             Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            
         }
         else
         {
             // Cacher le curseur
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = true;
+            
         }
     }
 
