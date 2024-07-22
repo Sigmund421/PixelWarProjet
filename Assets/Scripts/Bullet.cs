@@ -41,15 +41,19 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        ApplyDamage(other);
-
-        if (splashRange > 0)
+        if (other.gameObject.layer != LayerMask.NameToLayer("Pickup")) // Ignorer les collisions avec Pickup
         {
-            Explode();
-        }
+            ApplyDamage(other);
 
-        DestroyGameObject();
+            if (splashRange > 0)
+            {
+                Explode();
+            }
+
+            DestroyGameObject();
+        }
     }
+
 
     protected void ApplyDamage(Collider2D other)
     {
