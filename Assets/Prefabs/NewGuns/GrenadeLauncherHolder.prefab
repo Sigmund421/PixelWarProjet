@@ -207,6 +207,4 @@ MonoBehaviour:
   precision: 0.85
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
   grenadeSpeed: 50
-  grenadeLifetime: 5
-  grenadeExplosionRadius: 8
-  grenadeExplosionDamage: 18
+  grenadePrefab: {fileID: 3407379422365555065, guid: 9fa0d64f55ba1a146a4ea8e1e344b6b5, type: 3}

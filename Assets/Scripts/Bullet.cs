@@ -41,8 +41,15 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Pickup")) // Ignorer les collisions avec Pickup
+        if (other.gameObject.layer != LayerMask.NameToLayer("Pickup"))
         {
+            // Vérifier si l'objet collisionné a le layer "Grappable"
+            if (other.gameObject.layer == LayerMask.NameToLayer("Grappable"))
+            {
+                DestroyGameObject();
+                return;
+            }
+
             ApplyDamage(other);
 
             if (splashRange > 0)
@@ -53,7 +60,6 @@ public class Bullet : MonoBehaviour
             DestroyGameObject();
         }
     }
-
 
     protected void ApplyDamage(Collider2D other)
     {
@@ -73,7 +79,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected void Explode()
+    protected virtual void Explode()
     {
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);
         foreach (var hitCollider in hitColliders)
