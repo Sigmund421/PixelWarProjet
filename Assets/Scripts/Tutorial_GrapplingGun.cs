@@ -61,6 +61,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
+        ignoreLayer = LayerMask.GetMask("Pickup");
         currentLaunchSpeed = baseLaunchSpeed; // Initialisation de la vitesse de propulsion
         originalGravityScale = m_rigidbody.gravityScale; // Stocker l'échelle de gravité d'origine
     }
