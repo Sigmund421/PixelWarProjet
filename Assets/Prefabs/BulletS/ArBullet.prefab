@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6940783178500522480}
   - component: {fileID: 7635640961208312938}
   m_Layer: 0
-  m_Name: MiniGunBullet
+  m_Name: ArBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1820188, y: 0.43639508, z: 0}
-  m_LocalScale: {x: 0.2079359, y: 0.923232, z: 1.2033}
+  m_LocalScale: {x: 0.11880323, y: 1.5728626, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: a71f490a663a52c448cbacab800d89a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.47058827, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.59607846, g: 0.23529413, b: 0.45098042, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,7 +143,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -161,10 +161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab72b651f2862d8418b6aefcb5441173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 140
   lifeTime: 20
   explosionDamage: 0
   splashRange: 0
   explosionEffect: {fileID: 0}
   maxRange: 100
-  damageAmount: 15
+  maxBounces: 3
+  damageAmount: 10

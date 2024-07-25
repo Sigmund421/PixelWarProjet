@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private float explosionDamage = 20f;
     [SerializeField] private float splashRange = 0f;
+    [SerializeField] private GameObject explosionEffect; // Effet d'explosion
 
     [SerializeField] private float maxRange = 10f; // Maximum range of the bullet
 
@@ -81,6 +82,7 @@ public class Bullet : MonoBehaviour
 
     protected virtual void Explode()
     {
+        Instantiate(explosionEffect, transform.position, transform.rotation);
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);
         foreach (var hitCollider in hitColliders)
         {

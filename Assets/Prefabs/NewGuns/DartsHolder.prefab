@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6037736, g: 0.21359916, b: 0.21359916, a: 1}
+  m_Color: {r: 1, g: 0.23137257, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,9 +157,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5150708614009455629}
-  - component: {fileID: 1606226196793306627}
+  - component: {fileID: 7329446695768336004}
   m_Layer: 0
-  m_Name: ShotGunGunHolder
+  m_Name: DartsHolder
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -181,7 +181,7 @@ Transform:
   - {fileID: 8984770374026826393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1606226196793306627
+--- !u!114 &7329446695768336004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,13 +190,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8055455918253340666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e4cb7eceabb0044ea90d649697eb7bb, type: 3}
+  m_Script: {fileID: 11500000, guid: d9d26398213822c4a9bfc0b332d7782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 3407379422365555065, guid: f33bc88a6b733594b921687391fc200d, type: 3}
   firingPoint: {fileID: 4724155916049506602}
-  fireRate: 1
-  shotsPerReload: 10
+  fireRate: 0.3
+  shotsPerReload: 25
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}
@@ -204,8 +204,5 @@ MonoBehaviour:
   rotateOverTime: 0
   rotationSpeed: 30
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
-  precision: 1
+  precision: 0.8
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
-  shotgunBulletPrefab: {fileID: 3407379422365555065, guid: 4b16c107b8f859c45ac4f96522dd0d2b, type: 3}
-  pelletCount: 6
-  spreadAngle: 30
