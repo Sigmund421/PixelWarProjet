@@ -2,14 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GunBase : MonoBehaviour
+public class LaserGun : MonoBehaviour
 {
-    [SerializeField] protected GameObject bulletPrefab;
-    [SerializeField] protected Transform firingPoint;
+    [Header("Laser Settings")]
+    [SerializeField] private float defDistanceRay = 100;
+    [SerializeField] private Transform laserFirePoint;
+    [SerializeField] private LineRenderer m_lineRenderer;
+
+    [Header("Gun Settings")]
     [Range(0.1f, 10f)]
     [SerializeField] protected float fireRate = 0.2f;
-
-    [Header("Ammo")]
     [Range(1, 100)]
     [SerializeField] protected int shotsPerReload = 25;
     [Range(0.1f, 5f)]
@@ -20,28 +22,30 @@ public class GunBase : MonoBehaviour
     public Transform gunHolder;
     public Transform gunPivot;
 
-    [Header("Rotation:")]
+    [Header("Rotation")]
     [SerializeField] protected bool rotateOverTime = true;
-    [Range(0, 60)][SerializeField] protected float rotationSpeed = 4;
+    [Range(0, 60)]
+    [SerializeField] protected float rotationSpeed = 4;
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
 
-    [Header("Precision:")]
-    [Range(0f, 1f)]
-    [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
-
     public Camera m_camera;
-
-    [Header("Shooting")]
-    [SerializeField] protected bool canShoot = true; // New property to determine if the gun can shoot
+    [SerializeField] protected bool canShoot = true;
 
     protected float fireTimer;
     protected int currentAmmo;
     protected bool isReloading = false;
     protected float reloadTimer;
 
-    void Start()
+    private Transform m_transform;
+
+    private void Awake()
+    {
+        m_transform = GetComponent<Transform>();
+    }
+
+    private void Start()
     {
         currentAmmo = shotsPerReload;
         if (ammoBar != null)
@@ -51,16 +55,16 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         RotateGun(mousePos, true);
 
-        if (canShoot) // Check if the gun can shoot
+        if (canShoot)
         {
             if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
             {
-                Shoot();
+                ShootLaser();
                 fireTimer = fireRate;
                 currentAmmo--;
                 UpdateAmmoBar();
@@ -83,17 +87,31 @@ public class GunBase : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            // If not shooting, ensure the laser line renderer is disabled
+            m_lineRenderer.enabled = false;
+        }
     }
 
-    protected virtual void Shoot()
+    private void ShootLaser()
     {
-        // Calculate a random spread angle based on precision
-        float spreadAngle = (1f - precision) * 10f; // Adjust the multiplier as needed for the spread
-        float angle = Random.Range(-spreadAngle, spreadAngle);
+        m_lineRenderer.enabled = true; // Ensure the line renderer is enabled when shooting
+        if (Physics2D.Raycast(m_transform.position, transform.right))
+        {
+            RaycastHit2D _hit = Physics2D.Raycast(laserFirePoint.position, m_transform.right);
+            Draw2DRay(laserFirePoint.position, _hit.point);
+        }
+        else
+        {
+            Draw2DRay(laserFirePoint.position, laserFirePoint.transform.right * defDistanceRay);
+        }
+    }
 
-        // Apply the spread angle to the firing direction
-        Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
-        Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
+    private void Draw2DRay(Vector2 startPos, Vector2 endPos)
+    {
+        m_lineRenderer.SetPosition(0, startPos);
+        m_lineRenderer.SetPosition(1, endPos);
     }
 
     private IEnumerator Reload()

@@ -2,20 +2,23 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GunBase : MonoBehaviour
+public class Minigun : MonoBehaviour
 {
-    [SerializeField] protected GameObject bulletPrefab;
-    [SerializeField] protected Transform firingPoint;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firingPoint;
     [Range(0.1f, 10f)]
-    [SerializeField] protected float fireRate = 0.2f;
+    [SerializeField] private float fireRate = 0.2f;
 
     [Header("Ammo")]
     [Range(1, 100)]
-    [SerializeField] protected int shotsPerReload = 25;
+    [SerializeField] private int shotsPerReload = 25;
     [Range(0.1f, 5f)]
-    [SerializeField] protected float reloadTime = 2f;
+    [SerializeField] private float reloadTime = 2f;
     [Range(0.1f, 5f)]
-    [SerializeField] protected float reloadDelay = 0.5f;
+    [SerializeField] private float reloadDelay = 0.5f;
+
+    [Header("Minigun Specifics")]
+    [SerializeField] private float spinUpTime = 1f; // Time to wait before starting to shoot
 
     public Transform gunHolder;
     public Transform gunPivot;
@@ -25,21 +28,20 @@ public class GunBase : MonoBehaviour
     [Range(0, 60)][SerializeField] protected float rotationSpeed = 4;
 
     [Header("UI")]
-    [SerializeField] protected Slider ammoBar;
+    [SerializeField] private Slider ammoBar;
 
     [Header("Precision:")]
     [Range(0f, 1f)]
-    [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+    [SerializeField] private float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
 
     public Camera m_camera;
 
-    [Header("Shooting")]
-    [SerializeField] protected bool canShoot = true; // New property to determine if the gun can shoot
-
-    protected float fireTimer;
-    protected int currentAmmo;
-    protected bool isReloading = false;
-    protected float reloadTimer;
+    private float fireTimer;
+    private int currentAmmo;
+    private bool isReloading = false;
+    private float reloadTimer;
+    private bool isSpinningUp = false;
+    private bool canShoot = false;
 
     void Start()
     {
@@ -56,33 +58,41 @@ public class GunBase : MonoBehaviour
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         RotateGun(mousePos, true);
 
-        if (canShoot) // Check if the gun can shoot
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isSpinningUp && currentAmmo > 0 && !isReloading)
         {
-            if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
-            {
-                Shoot();
-                fireTimer = fireRate;
-                currentAmmo--;
-                UpdateAmmoBar();
-                reloadTimer = 0f;
-            }
-            else
-            {
-                fireTimer -= Time.deltaTime;
-            }
+            StartCoroutine(SpinUp());
+        }
 
-            if (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0 && !isReloading && canShoot)
+        {
+            Shoot();
+            fireTimer = fireRate;
+            currentAmmo--;
+            UpdateAmmoBar();
+            reloadTimer = 0f;
+        }
+        else
+        {
+            fireTimer -= Time.deltaTime;
+        }
+
+        if (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
+        {
+            reloadTimer += Time.deltaTime;
+            if (reloadTimer >= reloadDelay && !isReloading)
             {
-                reloadTimer += Time.deltaTime;
-                if (reloadTimer >= reloadDelay)
-                {
-                    if (!isReloading)
-                    {
-                        StartCoroutine(Reload());
-                    }
-                }
+                StartCoroutine(Reload());
             }
         }
+    }
+
+    private IEnumerator SpinUp()
+    {
+        isSpinningUp = true;
+        canShoot = false; // Disable shooting during spin up
+        yield return new WaitForSeconds(spinUpTime);
+        canShoot = true; // Enable shooting after spin up
+        isSpinningUp = false;
     }
 
     protected virtual void Shoot()

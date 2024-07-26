@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 215453723}
   - component: {fileID: 215453722}
   - component: {fileID: 215453721}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mannequin (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6739,7 +6739,7 @@ GameObject:
   - component: {fileID: 1191593574}
   - component: {fileID: 1191593573}
   - component: {fileID: 1191593578}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mannequin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9260,7 +9260,7 @@ GameObject:
   - component: {fileID: 1668720283}
   - component: {fileID: 1668720282}
   - component: {fileID: 1668720281}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mannequin (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9450,7 +9450,7 @@ GameObject:
   - component: {fileID: 1673221326}
   - component: {fileID: 1673221325}
   - component: {fileID: 1673221324}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mannequin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9984,7 +9984,7 @@ GameObject:
   - component: {fileID: 1729605672}
   - component: {fileID: 1729605671}
   - component: {fileID: 1729605670}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mannequin (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
