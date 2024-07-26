@@ -40,17 +40,18 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Grappable"))
+        {
+            DestroyGameObject();
+        }
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Pickup"))
         {
-            // Vérifier si l'objet collisionné a le layer "Grappable"
-            if (other.gameObject.layer == LayerMask.NameToLayer("Grappable"))
-            {
-                DestroyGameObject();
-                return;
-            }
-
             ApplyDamage(other);
 
             if (splashRange > 0)
