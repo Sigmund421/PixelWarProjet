@@ -96,7 +96,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3407379422365555065}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -113,7 +113,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6940783178500522480
 CapsuleCollider2D:
@@ -163,8 +163,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defDistanceRay: 100
+  damageInterval: 0.1
+  damageAmount: 10
   laserFirePoint: {fileID: 5150708614009455629, guid: e861f914e67589046830acf9509482d1, type: 3}
   m_lineRenderer: {fileID: 2058641564882926130}
+  rotateOverTime: 1
+  rotationSpeed: 4
+  gunHolder: {fileID: 0}
+  gunPivot: {fileID: 0}
+  m_camera: {fileID: 0}
+  shotsPerReload: 25
+  reloadTime: 2
+  reloadDelay: 0.5
+  ammoBar: {fileID: 0}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!120 &2058641564882926130
 LineRenderer:
   serializedVersion: 2

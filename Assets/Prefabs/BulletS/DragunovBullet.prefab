@@ -113,7 +113,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6940783178500522480
 CapsuleCollider2D:
@@ -144,7 +144,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4349e2fa65bb9ea4d96b058e858694ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 140
+  speed: 180
   lifeTime: 3
   explosionDamage: 20
   splashRange: 0
@@ -172,6 +172,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   lineRenderer: {fileID: 426584389414240303}
+  fadeTime: 0.5
+  fadeDelay: 2
 --- !u!120 &426584389414240303
 LineRenderer:
   serializedVersion: 2
