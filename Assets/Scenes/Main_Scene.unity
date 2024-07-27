@@ -8630,7 +8630,7 @@ PrefabInstance:
       objectReference: {fileID: 744835341577750064, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
     - target: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: orthographic size
-      value: 17.76
+      value: 16.54
       objectReference: {fileID: 0}
     - target: {fileID: 6114968955222752704, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: m_Name

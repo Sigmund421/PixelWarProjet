@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.19607845, g: 0.5019608, b: 0.19607845, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.5058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5150708614009455629}
   - component: {fileID: 7329446695768336004}
   m_Layer: 0
-  m_Name: AwpHolder
+  m_Name: NewLaserHolder
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d26398213822c4a9bfc0b332d7782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3407379422365555065, guid: 9e71ed2b6a9eb394781ccf7b81bc19e0, type: 3}
+  bulletPrefab: {fileID: 3407379422365555065, guid: 49a3f15ca3081c345970249c1d9655c2, type: 3}
   firingPoint: {fileID: 4724155916049506602}
-  fireRate: 1
-  shotsPerReload: 10
+  fireRate: 0.2
+  shotsPerReload: 25
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}
@@ -204,6 +204,6 @@ MonoBehaviour:
   rotateOverTime: 0
   rotationSpeed: 30
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
-  precision: 1
+  precision: 0.8
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
   canShoot: 1
