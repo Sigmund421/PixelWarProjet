@@ -8,6 +8,7 @@ public class Grenade : MonoBehaviour
     [SerializeField] private float explosionDamage = 20f;
     [SerializeField] private float splashRange = 5f;
     [SerializeField] private GameObject explosionEffect; // Effet d'explosion
+    public float damageAmount = 20f;
 
     private Rigidbody2D rb;
 
@@ -31,20 +32,35 @@ public class Grenade : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Pickup"))
-        {
-            // Vérifier si l'objet collisionné a le layer "Grappable"
-            if (other.gameObject.layer == LayerMask.NameToLayer("Grappable"))
-            {
-                Explode();
-                Destroy(gameObject);
-                return;
-            }
 
+        ApplyDamage(collision.collider);
+
+        if (splashRange > 0)
+        {
             Explode();
-            Destroy(gameObject);
+        }
+
+        DestroyGameObject();
+
+    }
+
+    private void ApplyDamage(Collider2D other)
+    {
+        ShieldSystem shieldSystem = other.GetComponent<ShieldSystem>();
+        HealthSystem healthSystem = other.GetComponent<HealthSystem>();
+
+        if (shieldSystem != null && healthSystem != null)
+        {
+            if (shieldSystem.GetCurrentShield() > 0)
+            {
+                shieldSystem.TakeShieldDamage(damageAmount);
+            }
+            else
+            {
+                healthSystem.TakeDamage(damageAmount);
+            }
         }
     }
 
@@ -64,12 +80,11 @@ public class Grenade : MonoBehaviour
                 var damagePercent = Mathf.InverseLerp(splashRange, 0, distance);
                 var finalDamage = explosionDamage * damagePercent;
 
-                if (shieldSystem != null)
+                if (shieldSystem.GetCurrentShield() > 0)
                 {
                     shieldSystem.TakeShieldDamage(finalDamage);
                 }
-
-                if (healthSystem != null)
+                else
                 {
                     healthSystem.TakeDamage(finalDamage);
                 }
@@ -82,4 +97,10 @@ public class Grenade : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, splashRange);
     }
+
+    private void DestroyGameObject()
+    {
+        Destroy(gameObject);
+    }
+
 }
