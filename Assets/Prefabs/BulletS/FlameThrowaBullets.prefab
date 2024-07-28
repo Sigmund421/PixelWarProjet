@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7635640961208312938}
   - component: {fileID: 7394608593690595651}
   - component: {fileID: 3650187112648559385}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FlameThrowaBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c59a8eb2ceecc05469b6dcbe8f17d087, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

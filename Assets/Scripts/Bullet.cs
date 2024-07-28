@@ -72,33 +72,29 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected virtual void Explode()
+    private void Explode()
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider != null)
+            ShieldSystem shieldSystem = hitCollider.GetComponent<ShieldSystem>();
+            HealthSystem healthSystem = hitCollider.GetComponent<HealthSystem>();
+
+            if (shieldSystem != null || healthSystem != null)
             {
-                ShieldSystem shieldSystem = hitCollider.GetComponent<ShieldSystem>();
-                HealthSystem healthSystem = hitCollider.GetComponent<HealthSystem>();
+                var closestPoint = hitCollider.ClosestPoint(transform.position);
+                var distance = Vector3.Distance(closestPoint, transform.position);
+                var damagePercent = Mathf.InverseLerp(splashRange, 0, distance);
+                var finalDamage = explosionDamage * damagePercent;
 
-                if (shieldSystem != null || healthSystem != null)
+                if (shieldSystem.GetCurrentShield() > 0)
                 {
-                    var closestPoint = hitCollider.ClosestPoint(transform.position);
-                    var distance = Vector3.Distance(closestPoint, transform.position);
-                    var damagePercent = Mathf.InverseLerp(splashRange, 0, distance);
-                    var finalDamage = explosionDamage * damagePercent;
-
-                    if (shieldSystem != null)
-                    {
-                        shieldSystem.TakeShieldDamage(finalDamage);
-                    }
-
-                    if (healthSystem != null)
-                    {
-                        healthSystem.TakeDamage(finalDamage);
-                    }
+                    shieldSystem.TakeShieldDamage(finalDamage);
+                }
+                else
+                {
+                    healthSystem.TakeDamage(finalDamage);
                 }
             }
         }

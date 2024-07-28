@@ -206,5 +206,6 @@ MonoBehaviour:
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
   precision: 0.85
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
+  canShoot: 1
   grenadeSpeed: 50
   grenadePrefab: {fileID: 3407379422365555065, guid: 9fa0d64f55ba1a146a4ea8e1e344b6b5, type: 3}

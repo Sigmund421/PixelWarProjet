@@ -76,37 +76,18 @@ public class LaserBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        maxBounces--;
-        var firstContact = collision.contacts[0];
-        
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Grappable"))
+
+        ApplyDamage(collision.collider);
+
+        if (splashRange > 0)
         {
-            bounceCount++;
-            if (bounceCount >= maxBounces)
-            {
-                StartCoroutine(FadeOutLineRenderer());
-            }
-            // Reflect the bullet direction upon collision
-            Vector2 newVelocity = Vector2.Reflect(direction.normalized, firstContact.normal);
-            Shoot(newVelocity.normalized);
+            Explode();
         }
-        
+
+        DestroyGameObject();
+
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Pickup"))
-        {
-            ApplyDamage(other);
-
-            if (splashRange > 0)
-            {
-                Explode();
-            }
-
-            StartCoroutine(FadeOutLineRenderer());
-        }
-    }
 
     private void ApplyDamage(Collider2D other)
     {
@@ -197,4 +178,11 @@ public class LaserBullet : MonoBehaviour
         
     }
 
+    private void DestroyGameObject()
+    {
+        // Stop the bullet's movement and hide it
+        rb.velocity = Vector2.zero;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+    }
 }

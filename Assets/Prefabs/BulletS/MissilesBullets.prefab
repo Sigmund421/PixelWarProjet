@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 802056545767656169}
   - component: {fileID: 6940783178500522480}
   - component: {fileID: 8249232458939074064}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: MissilesBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a71f490a663a52c448cbacab800d89a1, type: 2}
+  - {fileID: 2100000, guid: c59a8eb2ceecc05469b6dcbe8f17d087, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,7 +143,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -166,5 +166,7 @@ MonoBehaviour:
   acceleration: 50
   lifeTime: 2
   damageAmount: 20
+  explosionDamage: 10
   explosionEffect: {fileID: 7041186904873801632, guid: a32ca4620281d594c82301d9f3fa73b1, type: 3}
-  splashRange: 1.76
+  splashRange: 2.5
+  maxRange: 100

@@ -11,16 +11,18 @@ public class Missile : MonoBehaviour
     [SerializeField] private float acceleration = 5f; // Accélération du missile
     [SerializeField] private float lifeTime = 5f; // Durée de vie du missile
     [SerializeField] private float damageAmount = 20f; // Quantité de dégâts infligés
-
+    [SerializeField] private float explosionDamage = 10f;
     [SerializeField] private GameObject explosionEffect; // Effet d'explosion
     [SerializeField] private float splashRange = 0f; // Portée de l'explosion
+    [SerializeField] private float maxRange = 10f; // Maximum range of the bullet
+    protected Vector3 startPosition;
 
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic; // Définir le Rigidbody2D comme Kinematic
+        
     }
 
     private void Start()
@@ -40,37 +42,28 @@ public class Missile : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * maxSpeed; // Limiter la vitesse maximale
             }
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Grappable"))
+        // Check the distance traveled
+        float distanceTraveled = Vector3.Distance(startPosition, transform.position);
+        if (distanceTraveled >= maxRange)
         {
             DestroyGameObject();
         }
+
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        // Vérifier que le missile ne touche pas des objets à ignorer (comme les Pickups)
-        if (other.gameObject.layer != LayerMask.NameToLayer("Pickup"))
+
+        ApplyDamage(collision.collider);
+
+        if (splashRange > 0)
         {
-            // Vérifier si l'objet touché est dans la couche "Grappable"
-            if (other.gameObject.layer == LayerMask.NameToLayer("Grappable"))
-            {
-                DestroyGameObject();
-                return; // Exit early if we don't need to do anything else
-            }
-
-            ApplyDamage(other);
-
-            if (splashRange > 0)
-            {
-                Explode();
-            }
-
-            DestroyGameObject();
+            Explode();
         }
+
+        DestroyGameObject();
+
     }
 
     private void ApplyDamage(Collider2D other)
@@ -97,27 +90,23 @@ public class Missile : MonoBehaviour
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider != null)
+            ShieldSystem shieldSystem = hitCollider.GetComponent<ShieldSystem>();
+            HealthSystem healthSystem = hitCollider.GetComponent<HealthSystem>();
+
+            if (shieldSystem != null || healthSystem != null)
             {
-                ShieldSystem shieldSystem = hitCollider.GetComponent<ShieldSystem>();
-                HealthSystem healthSystem = hitCollider.GetComponent<HealthSystem>();
+                var closestPoint = hitCollider.ClosestPoint(transform.position);
+                var distance = Vector3.Distance(closestPoint, transform.position);
+                var damagePercent = Mathf.InverseLerp(splashRange, 0, distance);
+                var finalDamage = explosionDamage * damagePercent;
 
-                if (shieldSystem != null || healthSystem != null)
+                if (shieldSystem.GetCurrentShield() > 0)
                 {
-                    var closestPoint = hitCollider.ClosestPoint(transform.position);
-                    var distance = Vector3.Distance(closestPoint, transform.position);
-                    var damagePercent = Mathf.InverseLerp(splashRange, 0, distance);
-                    var finalDamage = damageAmount * damagePercent;
-
-                    if (shieldSystem != null)
-                    {
-                        shieldSystem.TakeShieldDamage(finalDamage);
-                    }
-
-                    if (healthSystem != null)
-                    {
-                        healthSystem.TakeDamage(finalDamage);
-                    }
+                    shieldSystem.TakeShieldDamage(finalDamage);
+                }
+                else
+                {
+                    healthSystem.TakeDamage(finalDamage);
                 }
             }
         }

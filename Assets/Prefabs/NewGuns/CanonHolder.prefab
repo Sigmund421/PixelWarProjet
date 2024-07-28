@@ -57,8 +57,8 @@ Transform:
   m_GameObject: {fileID: 3729911019307692687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.59, y: 0, z: 0}
-  m_LocalScale: {x: 2.1567187, y: 0.65625, z: 1}
+  m_LocalPosition: {x: 0.752, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 0.74, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4724155916049506602}
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.14901961, g: 0.30980393, b: 0.7725491, a: 1}
+  m_Color: {r: 0.10980393, g: 0, b: 0.69803923, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5150708614009455629}
   - component: {fileID: 7329446695768336004}
   m_Layer: 0
-  m_Name: BazookaGunHolder
+  m_Name: CanonHolder
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d26398213822c4a9bfc0b332d7782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3407379422365555065, guid: 1f9ade95b295d304cae43ebd7d90bc5e, type: 3}
+  bulletPrefab: {fileID: 3407379422365555065, guid: b427dd52ff532d84790f68c77c2c0099, type: 3}
   firingPoint: {fileID: 4724155916049506602}
-  fireRate: 1.8
-  shotsPerReload: 5
+  fireRate: 0.5
+  shotsPerReload: 25
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}
@@ -204,6 +204,6 @@ MonoBehaviour:
   rotateOverTime: 0
   rotationSpeed: 30
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
-  precision: 1
+  precision: 0.8
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
   canShoot: 1

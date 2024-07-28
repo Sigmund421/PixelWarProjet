@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6940783178500522480}
   - component: {fileID: 7205627697713272505}
   - component: {fileID: 8711145122075480809}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: AwpBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

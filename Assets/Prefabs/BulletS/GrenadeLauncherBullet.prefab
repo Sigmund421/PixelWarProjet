@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 802056545767656169}
   - component: {fileID: 6940783178500522480}
   - component: {fileID: 3867496096136073824}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GrenadeLauncherBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a71f490a663a52c448cbacab800d89a1, type: 2}
+  - {fileID: 2100000, guid: c59a8eb2ceecc05469b6dcbe8f17d087, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
