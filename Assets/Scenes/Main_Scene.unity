@@ -14002,10 +14002,14 @@ PrefabInstance:
     - target: {fileID: 2195064699661455090, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 744835341577750064, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      objectReference: {fileID: 974375107}
+    - target: {fileID: 2195064699661455090, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
+      propertyPath: FollowSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: orthographic size
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6114968955222752704, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: m_Name
@@ -17849,6 +17853,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &974375107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 744835341577750064, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+  m_PrefabInstance: {fileID: 1270739125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &982391466
 GameObject:
   m_ObjectHideFlags: 0

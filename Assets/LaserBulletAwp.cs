@@ -140,6 +140,7 @@ public class LaserBulletAwp : MonoBehaviour
         rb.velocity = Vector2.zero;
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
+        Destroy(gameObject);
     }
 
     private IEnumerator FadeOutAfterDelay()
