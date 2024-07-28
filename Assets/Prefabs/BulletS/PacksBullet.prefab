@@ -99,10 +99,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 8
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  explosionDelay: 2
+  explosionDelay: 1.4
   explosionDamage: 8
   splashRange: 3
   explosionEffect: {fileID: 7041186904873801632, guid: 34af0f0ef1fa9bd4e8c1e298a375abff, type: 3}
