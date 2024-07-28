@@ -23229,10 +23229,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4124951904497668983, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518058645199592654, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144247692293210560, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152233805637356804, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782831345544824205, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6677031121176305043, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 1096176481}
+    - target: {fileID: 6862549342393185214, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6970026750099950095, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
       propertyPath: m_SortingOrder
       value: 5
@@ -23248,6 +23272,10 @@ PrefabInstance:
     - target: {fileID: 8704545292566497679, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704545292566497679, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
