@@ -199,7 +199,7 @@ MonoBehaviour:
   shotsPerReload: 25
   reloadTime: 2
   reloadDelay: 0.5
-  gunHolder: {fileID: 5150708614009455629}
+  gunHolder: {fileID: 744835341577750064, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
   gunPivot: {fileID: 8984770374026826393}
   rotateOverTime: 0
   rotationSpeed: 30

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8676917873668492400}
   - component: {fileID: 802056545767656169}
   - component: {fileID: 6940783178500522480}
-  - component: {fileID: 7205627697713272505}
-  - component: {fileID: 8711145122075480809}
+  - component: {fileID: -2542825794874585002}
+  - component: {fileID: 426584389414240303}
   m_Layer: 14
   m_Name: AwpBullet
   m_TagString: Untagged
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.2997123, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.9960785, g: 0.2901961, b: 0.93725497, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: de4caa2749e554d4c9326f7bf84dd0ee, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -124,7 +124,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3407379422365555065}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 52baee830c5d5b843acf421286385432, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -150,7 +150,31 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1.11}
   m_Direction: 0
---- !u!120 &7205627697713272505
+--- !u!114 &-2542825794874585002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407379422365555065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4349e2fa65bb9ea4d96b058e858694ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
+  lifeTime: 3
+  explosionDamage: 20
+  splashRange: 0
+  explosionEffect: {fileID: 0}
+  maxRange: 100
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  lineRenderer: {fileID: 426584389414240303}
+  fadeTime: 0.5
+  fadeDelay: 2
+--- !u!120 &426584389414240303
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -191,7 +215,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -203,7 +227,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.069416046
+        value: 0.4776783
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -211,8 +235,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.99383545
-        value: 0.11930549
+        time: 1
+        value: 0.49107143
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -224,8 +248,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.24126446, g: 1, b: 0, a: 1}
-      key1: {r: 0.24126446, g: 1, b: 0, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -249,7 +273,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -263,30 +287,3 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &8711145122075480809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407379422365555065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca985d5566d3334e97808f3d41067ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 140
-  lifeTime: 3
-  explosionDamage: 0
-  splashRange: 0
-  explosionEffect: {fileID: 0}
-  maxRange: 100
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  lineRenderer: {fileID: 7205627697713272505}
-  maxBounces: 2
-  damageAmount: 20
-  fadeTime: 0.15
-  destroyDelay: 2
-  startFadeTime: 0.15
