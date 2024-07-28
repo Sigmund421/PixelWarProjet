@@ -13063,7 +13063,7 @@ Transform:
   m_GameObject: {fileID: 671766072}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8, y: -2.4, z: 0}
+  m_LocalPosition: {x: 2.8, y: -1.013, z: 0}
   m_LocalScale: {x: 9.287578, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14000,9 +14000,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2195064699661455090, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 974375107}
+    - target: {fileID: 2195064699661455090, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 974375107}
+    - target: {fileID: 2195064699661455090, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
+      propertyPath: offset.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 2195064699661455090, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: FollowSpeed
       value: 20
@@ -23181,6 +23189,14 @@ PrefabInstance:
       propertyPath: secondaryWeaponSlot
       value: 
       objectReference: {fileID: 1665982030}
+    - target: {fileID: 249515675621621976, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: weaponPrices.Array.data[10]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 249515675621621976, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
+      propertyPath: weaponPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 8055455918253340666, guid: 3c5e1ff3e6dcfb7459c5744ec91cc6fd, type: 3}
     - target: {fileID: 427687596303140147, guid: 7043abf36094cf44b8e468cf18d208a6, type: 3}
       propertyPath: moneyText
       value: 
@@ -25999,7 +26015,7 @@ Transform:
   m_GameObject: {fileID: 1407835996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.93, y: 6.87, z: 0.0352439}
+  m_LocalPosition: {x: 4.93, y: 8.01, z: 0.0352439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26495,7 +26511,7 @@ Transform:
   m_GameObject: {fileID: 1441870591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.255159, y: 0.59688723, z: 0.02313845}
+  m_LocalPosition: {x: 8.255159, y: 2.19, z: 0.02313845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38417,6 +38433,54 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 394925522574995671, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -93
+      objectReference: {fileID: 0}
+    - target: {fileID: 533671282820652404, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -91
+      objectReference: {fileID: 0}
+    - target: {fileID: 612244897910247000, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -89
+      objectReference: {fileID: 0}
+    - target: {fileID: 723402779065594983, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -89
+      objectReference: {fileID: 0}
+    - target: {fileID: 849177548678520651, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -663.51996
+      objectReference: {fileID: 0}
+    - target: {fileID: 849177548678520651, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 89.47995
+      objectReference: {fileID: 0}
+    - target: {fileID: 876687480759024229, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -399
+      objectReference: {fileID: 0}
+    - target: {fileID: 876687480759024229, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43.403145
+      objectReference: {fileID: 0}
+    - target: {fileID: 927884801678174462, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -700
+      objectReference: {fileID: 0}
+    - target: {fileID: 927884801678174462, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041063287194201357, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -58.51996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082679083967162494, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -397
+      objectReference: {fileID: 0}
     - target: {fileID: 1244007824003609200, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38424,6 +38488,34 @@ PrefabInstance:
     - target: {fileID: 1244007824003609200, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512348744457109247, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -695.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512348744457109247, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 144.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783468930283747579, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 256.49002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962325306297858421, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_Name
+      value: GunBaseImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176335915124984951, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -366.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176335915124984951, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -98.920044
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380632651121539385, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -60.510025
       objectReference: {fileID: 0}
     - target: {fileID: 2472926621989179492, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -38449,6 +38541,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 3733922635272790772, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 224
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817198754897043599, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -94
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817198754897043599, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43.000008
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864590312438710720, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 226.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 3877594223127492450, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38456,6 +38564,18 @@ PrefabInstance:
     - target: {fileID: 3877594223127492450, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913229811960868191, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -699
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913229811960868191, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 337
+      objectReference: {fileID: 0}
+    - target: {fileID: 4160257642897709881, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -365.51
       objectReference: {fileID: 0}
     - target: {fileID: 4252375586654521043, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -38465,6 +38585,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 4313513983267154513, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 258.48004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399172136669412479, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 224.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441266333978324630, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -94
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441266333978324630, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43
+      objectReference: {fileID: 0}
     - target: {fileID: 4815310197160041787, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38472,6 +38608,22 @@ PrefabInstance:
     - target: {fileID: 4815310197160041787, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4842321574320832851, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -61.51001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4842321574320832851, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -98.51691
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927354321874030869, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -93.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5255048133766384443, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -398
       objectReference: {fileID: 0}
     - target: {fileID: 5782258424617305616, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -38489,6 +38641,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 6197607155271491763, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -399
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197607155271491763, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43.403145
+      objectReference: {fileID: 0}
     - target: {fileID: 6216212144467092343, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38496,11 +38656,39 @@ PrefabInstance:
     - target: {fileID: 6216212144467092343, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483326774004136604, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -397
       objectReference: {fileID: 0}
     - target: {fileID: 6560377033792772087, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_Name
       value: ShopCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6723180980452657176, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723180980452657176, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723180980452657176, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819008660990173426, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -364.52002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050520005871824474, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -667.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050520005871824474, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96.520004
+      objectReference: {fileID: 0}
     - target: {fileID: 7107429315630801498, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38508,6 +38696,22 @@ PrefabInstance:
     - target: {fileID: 7107429315630801498, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216191235008805633, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -696
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216191235008805633, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527571948079092954, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -700
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527571948079092954, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41
       objectReference: {fileID: 0}
     - target: {fileID: 8266392526387928851, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -38605,6 +38809,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 8888294397132816376, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 226
+      objectReference: {fileID: 0}
     - target: {fileID: 9034385815497544566, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38613,8 +38821,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 9133047934598552913, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -56.51996
+      objectReference: {fileID: 0}
+    - target: {fileID: 9138034126697339595, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -91
+      objectReference: {fileID: 0}
+    - target: {fileID: 9183680131304395339, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -398
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1243661825618057510, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
+    - {fileID: 6323894283320511852, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8664e93314bb84740afa21acab12c09f, type: 3}
