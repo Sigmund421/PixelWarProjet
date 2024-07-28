@@ -21,8 +21,8 @@ public class GunBase : MonoBehaviour
     public Transform gunPivot;
 
     [Header("Rotation:")]
-    [SerializeField] protected bool rotateOverTime = true;
-    [Range(0, 60)][SerializeField] protected float rotationSpeed = 4;
+    [SerializeField] private bool rotateOverTime = true;
+    [Range(0, 60)][SerializeField] private float rotationSpeed = 4;
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
@@ -32,6 +32,9 @@ public class GunBase : MonoBehaviour
     [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
 
     public Camera m_camera;
+
+    [Header("Shooting")]
+    [SerializeField] protected bool canShoot = true; // New property to determine if the gun can shoot
 
     protected float fireTimer;
     protected int currentAmmo;
@@ -50,30 +53,39 @@ public class GunBase : MonoBehaviour
 
     void Update()
     {
+        if (m_camera == null)
+        {
+            Debug.LogError("Camera reference not set in GunBase.");
+            return;
+        }
+
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
         RotateGun(mousePos, true);
 
-        if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
+        if (canShoot) // Check if the gun can shoot
         {
-            Shoot();
-            fireTimer = fireRate;
-            currentAmmo--;
-            UpdateAmmoBar();
-            reloadTimer = 0f;
-        }
-        else
-        {
-            fireTimer -= Time.deltaTime;
-        }
-
-        if (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
-        {
-            reloadTimer += Time.deltaTime;
-            if (reloadTimer >= reloadDelay)
+            if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
             {
-                if (!isReloading)
+                Shoot();
+                fireTimer = fireRate;
+                currentAmmo--;
+                UpdateAmmoBar();
+                reloadTimer = 0f;
+            }
+            else
+            {
+                fireTimer -= Time.deltaTime;
+            }
+
+            if (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
+            {
+                reloadTimer += Time.deltaTime;
+                if (reloadTimer >= reloadDelay)
                 {
-                    StartCoroutine(Reload());
+                    if (!isReloading)
+                    {
+                        StartCoroutine(Reload());
+                    }
                 }
             }
         }
@@ -111,9 +123,11 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    private void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
+    void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
     {
         Vector3 distanceVector = lookPoint - gunPivot.position;
+        Debug.Log($"Distance Vector: {distanceVector}");
+
         float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
         if (rotateOverTime && allowRotationOverTime)
         {
@@ -123,5 +137,7 @@ public class GunBase : MonoBehaviour
         {
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+
+        Debug.Log($"Gun Rotation Angle: {angle}");
     }
 }

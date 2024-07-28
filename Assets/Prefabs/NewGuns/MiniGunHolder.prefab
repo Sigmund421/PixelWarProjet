@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5150708614009455629}
-  - component: {fileID: 7329446695768336004}
+  - component: {fileID: 461502164944685512}
   m_Layer: 0
   m_Name: MiniGunHolder
   m_TagString: Untagged
@@ -181,7 +181,7 @@ Transform:
   - {fileID: 8984770374026826393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7329446695768336004
+--- !u!114 &461502164944685512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,19 +190,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8055455918253340666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d26398213822c4a9bfc0b332d7782d, type: 3}
+  m_Script: {fileID: 11500000, guid: 20bb6d75fb20f354eb948788076b99f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3407379422365555065, guid: 039b50d643f773e4ca816b30a3a1e337, type: 3}
   firingPoint: {fileID: 4724155916049506602}
   fireRate: 0.1
-  shotsPerReload: 40
+  shotsPerReload: 50
   reloadTime: 2
   reloadDelay: 0.5
+  spinUpTime: 0.5
   gunHolder: {fileID: 5150708614009455629}
   gunPivot: {fileID: 8984770374026826393}
   rotateOverTime: 0
   rotationSpeed: 30
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
-  precision: 0.7
+  precision: 0.8
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
