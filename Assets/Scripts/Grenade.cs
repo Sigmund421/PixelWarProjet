@@ -34,15 +34,18 @@ public class Grenade : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-
-        ApplyDamage(collision.collider);
-
-        if (splashRange > 0)
+        if (collision.gameObject.layer != 9)
         {
-            Explode();
-        }
+            ApplyDamage(collision.collider);
 
-        DestroyGameObject();
+            if (splashRange > 0)
+            {
+                Explode();
+            }
+
+            DestroyGameObject();
+
+        }
 
     }
 
