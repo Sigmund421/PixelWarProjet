@@ -14,7 +14,7 @@ public class Missile : MonoBehaviour
     [SerializeField] private float explosionDamage = 10f;
     [SerializeField] private GameObject explosionEffect; // Effet d'explosion
     [SerializeField] private float splashRange = 0f; // Portée de l'explosion
-    [SerializeField] private float maxRange = 10f; // Maximum range of the bullet
+    [SerializeField] private float maxRange = 10f; // Range max du missile
     protected Vector3 startPosition;
 
     private Rigidbody2D rb;
@@ -33,17 +33,17 @@ public class Missile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Accélérer le missile jusqu'à atteindre la vitesse maximale
+        // Accélére le missile jusqu'à atteindre la vitesse maximale
         if (rb.velocity.magnitude < maxSpeed)
         {
             rb.velocity += (Vector2)transform.up * acceleration * Time.deltaTime;
             if (rb.velocity.magnitude > maxSpeed)
             {
-                rb.velocity = rb.velocity.normalized * maxSpeed; // Limiter la vitesse maximale
+                rb.velocity = rb.velocity.normalized * maxSpeed; // Limite la vitesse maximale
             }
         }
 
-        // Check the distance traveled
+        // Regarde la vitesse parcourue
         float distanceTraveled = Vector3.Distance(startPosition, transform.position);
         if (distanceTraveled >= maxRange)
         {

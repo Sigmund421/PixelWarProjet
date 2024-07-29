@@ -7,8 +7,8 @@ public class ShieldSystem : MonoBehaviour
 {
     public float maxShield = 50f;
     private float currentShield;
-    public GameObject shieldVisual; // Assurez-vous d'assigner ce GameObject dans l'inspecteur
-    public Slider shieldBar; // Assurez-vous d'assigner ce Slider dans l'inspecteur
+    public GameObject shieldVisual; 
+    public Slider shieldBar; 
 
     private void Start()
     {

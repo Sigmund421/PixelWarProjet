@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float splashRange = 0f;
     [SerializeField] private GameObject explosionEffect; // Effet d'explosion
 
-    [SerializeField] private float maxRange = 10f; // Maximum range of the bullet
+    [SerializeField] private float maxRange = 10f; // Range max
 
     protected Rigidbody2D rb;
     public float damageAmount = 20f;
@@ -30,9 +30,9 @@ public class Bullet : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        rb.velocity = transform.up * speed;
+        rb.velocity = transform.up * speed; //Tir propulsion
 
-        // Check the distance traveled
+        // Regarde la distance parcourue
         float distanceTraveled = Vector3.Distance(startPosition, transform.position);
         if (distanceTraveled >= maxRange)
         {
@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
         
     }
 
-    protected void ApplyDamage(Collider2D other)
+    protected void ApplyDamage(Collider2D other) //Dégâts, d'abord au bouclier et après à la vie si le bouclier est détruit
     {
         ShieldSystem shieldSystem = other.GetComponent<ShieldSystem>();
         HealthSystem healthSystem = other.GetComponent<HealthSystem>();
@@ -72,7 +72,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void Explode()
+    private void Explode() // TOUTES LES EXPLOSIONS DANS LES SCRIPTS ont la même logique, Faire + de dégâts au centre qu'a l'extérieur
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);

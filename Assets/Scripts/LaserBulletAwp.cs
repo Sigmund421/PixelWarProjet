@@ -14,8 +14,8 @@ public class LaserBulletAwp : MonoBehaviour
     [SerializeField] private float splashRange = 0f;
     [SerializeField] private GameObject explosionEffect; // Effet d'explosion
 
-    [SerializeField] private float maxRange = 10f; // Maximum range of the bullet
-    [SerializeField] private LayerMask ignoreLayer; // LayerMask to ignore specific layers
+    [SerializeField] private float maxRange = 10f; // Range maxi
+    [SerializeField] private LayerMask ignoreLayer; // Ignore certains layers
 
     [SerializeField] private LineRenderer lineRenderer;
 
@@ -24,8 +24,8 @@ public class LaserBulletAwp : MonoBehaviour
 
     [SerializeField] private float damageAmount = 20f;
     private HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
-    [SerializeField] private float fadeTime = 0.5f; // Time for the line renderer to fade out
-    [SerializeField] private float fadeDelay = 2f; // Delay before starting to fade out the line renderer
+    [SerializeField] private float fadeTime = 0.5f; // temps du fade du line renderer
+    [SerializeField] private float fadeDelay = 2f; // Délai avant de commencer le fade
 
     private void Awake()
     {
@@ -34,19 +34,19 @@ public class LaserBulletAwp : MonoBehaviour
 
     private void Start()
     {
-        startPosition = transform.position; // Save the starting position
+        startPosition = transform.position; // Sauvegarde la position actuelle
         Destroy(gameObject, lifeTime);
 
-        // Initialize the line renderer positions
+        
         if (lineRenderer != null)
         {
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, transform.position);
-            lineRenderer.enabled = true; // Enable the line renderer
+            lineRenderer.enabled = true; 
         }
 
-        // Start the fade out coroutine with delay
+        
         StartCoroutine(FadeOutAfterDelay());
     }
 
@@ -54,14 +54,14 @@ public class LaserBulletAwp : MonoBehaviour
     {
         rb.velocity = transform.up * speed;
 
-        // Update the line renderer to follow the bullet
+        // Met à jour le line renderer pour suivre la balle
         if (lineRenderer != null)
         {
             lineRenderer.SetPosition(0, startPosition);
             lineRenderer.SetPosition(1, transform.position);
         }
 
-        // Check the distance traveled
+        // Distance parcourue
         float distanceTraveled = Vector3.Distance(startPosition, transform.position);
         if (distanceTraveled >= maxRange)
         {
@@ -136,7 +136,7 @@ public class LaserBulletAwp : MonoBehaviour
 
     private void DestroyGameObject()
     {
-        // Stop the bullet's movement and hide it
+        // arrête les mouvements de la balle
         rb.velocity = Vector2.zero;
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
@@ -145,10 +145,10 @@ public class LaserBulletAwp : MonoBehaviour
 
     private IEnumerator FadeOutAfterDelay()
     {
-        // Wait for the fade delay
+        // Attend le fade delay
         yield return new WaitForSeconds(fadeDelay);
 
-        // Start fading out the line renderer
+        // Commence à faire le fade du line renderer
         StartCoroutine(FadeOutLineRenderer());
     }
 

@@ -7,9 +7,9 @@ public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
-    public Transform originalParent; // Rendre public
+    public Transform originalParent; 
     private ShopManager shopManager;
-    public bool isInSlot = false; // Ajouter un booléen pour vérifier si l'icône est dans un slot
+    public bool isInSlot = false; 
 
     private void Awake()
     {

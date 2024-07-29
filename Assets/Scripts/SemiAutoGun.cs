@@ -36,12 +36,12 @@ public class SemiAutoGun : MonoBehaviour
 
     [Header("Precision:")]
     [Range(0f, 1f)]
-    [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+    [SerializeField] protected float precision = 1f; //1 precision parfaite
 
     public Camera m_camera;
 
     [Header("Shooting")]
-    [SerializeField] protected bool canShoot = true; // New property to determine if the gun can shoot
+    [SerializeField] protected bool canShoot = true;
 
     protected float fireTimer;
     protected int currentAmmo;
@@ -57,7 +57,7 @@ public class SemiAutoGun : MonoBehaviour
             ammoBar.value = currentAmmo;
         }
     }
-
+    
     void Update()
     {
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
@@ -65,9 +65,9 @@ public class SemiAutoGun : MonoBehaviour
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         gunPivot.eulerAngles = new Vector3(0, 0, angle);
-        Debug.Log(angle);
+        Debug.Log(angle); // les 4 lignes au dessus + celle là c'est pour que l'arme suive le curseur
 
-        if (canShoot) // Check if the gun can shoot
+        if (canShoot) 
         {
             if (Input.GetMouseButtonDown(0) && fireTimer <= 0f && currentAmmo > 0)
             {
@@ -106,11 +106,11 @@ public class SemiAutoGun : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        // Calculate a random spread angle based on precision
-        float spreadAngle = (1f - precision) * 10f; // Adjust the multiplier as needed for the spread
+        // Calcul un champ pour définir la précision haute ou faible
+        float spreadAngle = (1f - precision) * 10f; 
         float angle = Random.Range(-spreadAngle, spreadAngle);
 
-        // Apply the spread angle to the firing direction
+        // Le champ de précision est appliqué au firingPoint
         Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
     }

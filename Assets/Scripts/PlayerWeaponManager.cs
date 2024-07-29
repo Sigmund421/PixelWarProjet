@@ -11,6 +11,7 @@ public class PlayerWeaponManager : MonoBehaviour
     // Référence à la barre de munitions globale dans l'UI
     public Slider globalAmmoBar;
 
+    // défini l'arme de base avec laquelle le joueur commence
     void Start()
     {
         if (primaryWeapon != null)
@@ -40,7 +41,7 @@ public class PlayerWeaponManager : MonoBehaviour
 
         currentWeapon = Instantiate(weapon, weaponHolder.position, weaponHolder.rotation, weaponHolder);
 
-        // Vérifier et configurer la barre de munitions globale
+        // Vérifie et configure la barre de munitions globale
         if (currentWeapon.GetComponent<GunBase>() != null)
         {
             GunBase.SetGlobalAmmoBar(globalAmmoBar);

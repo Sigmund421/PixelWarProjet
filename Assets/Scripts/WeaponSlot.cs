@@ -3,8 +3,8 @@ using UnityEngine.EventSystems;
 
 public class WeaponSlot : MonoBehaviour, IDropHandler
 {
-    public int slotIndex; // 1 for primary, 2 for secondary
-    private WeaponIcon currentWeaponIcon; // Reference to the current weapon icon in the slot
+    public int slotIndex; // 1 pour premier, 2 pour second
+    private WeaponIcon currentWeaponIcon; // Reference à l'icone d'arme actuelle du slot
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -17,17 +17,17 @@ public class WeaponSlot : MonoBehaviour, IDropHandler
             {
                 if (currentWeaponIcon != null)
                 {
-                    // Return the current weapon icon to its original position in the shop UI
+                    // Retour de l'icone d'arme actuelle à son emplacement de départ
                     shopManager.ResetWeaponIconPosition(currentWeaponIcon);
-                    currentWeaponIcon.isInSlot = false; // Désactiver l'état dans le slot pour l'icône remplacée
+                    currentWeaponIcon.isInSlot = false; // Désactive l'état dans le slot pour l'icône remplacée
                 }
 
-                // Set the new weapon icon as the current one
+                // Met la nouvelle icône d'arme comme celle actuelle
                 currentWeaponIcon = weaponIcon;
-                weaponIcon.transform.SetParent(transform); // Set the parent to this slot
+                weaponIcon.transform.SetParent(transform); 
                 weaponIcon.transform.position = GetComponent<RectTransform>().position;
-                weaponIcon.SetOriginalPosition(weaponIcon.GetComponent<RectTransform>().anchoredPosition); // Update original position
-                weaponIcon.isInSlot = true; // Activer l'état dans le slot pour la nouvelle icône
+                weaponIcon.SetOriginalPosition(weaponIcon.GetComponent<RectTransform>().anchoredPosition); 
+                weaponIcon.isInSlot = true;
 
                 shopManager.EquipWeapon(slotIndex, shopManager.GetPurchasedWeapon(weaponIcon.weaponIndex));
             }
@@ -42,7 +42,7 @@ public class WeaponSlot : MonoBehaviour, IDropHandler
             if (shopManager != null)
             {
                 shopManager.ResetWeaponIconPosition(currentWeaponIcon);
-                currentWeaponIcon.isInSlot = false; // Désactiver l'état dans le slot
+                currentWeaponIcon.isInSlot = false; // Désactive l'état dans le slot
             }
             currentWeaponIcon = null;
         }

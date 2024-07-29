@@ -49,7 +49,7 @@ public class Grenade : MonoBehaviour
 
     }
 
-    private void ApplyDamage(Collider2D other)
+    private void ApplyDamage(Collider2D other) //Dégâts, d'abord au bouclier et après à la vie si le bouclier est détruit
     {
         ShieldSystem shieldSystem = other.GetComponent<ShieldSystem>();
         HealthSystem healthSystem = other.GetComponent<HealthSystem>();
@@ -67,7 +67,7 @@ public class Grenade : MonoBehaviour
         }
     }
 
-    private void Explode()
+    private void Explode() // TOUTES LES EXPLOSIONS DANS LES SCRIPTS ont la même logique, Faire + de dégâts au centre qu'a l'extérieur
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);

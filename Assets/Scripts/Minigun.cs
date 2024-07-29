@@ -35,12 +35,12 @@ public class Minigun : MonoBehaviour
 
     [Header("Precision:")]
     [Range(0f, 1f)]
-    [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+    [SerializeField] protected float precision = 1f; 
 
     public Camera m_camera;
 
     [Header("Shooting")]
-    [SerializeField] protected bool canShoot = true; // New property to determine if the gun can shoot
+    [SerializeField] protected bool canShoot = true; 
 
     protected float fireTimer;
     protected int currentAmmo;
@@ -90,7 +90,7 @@ public class Minigun : MonoBehaviour
             StartCoroutine(SpinUp());
         }
 
-        if (canShoot) // Check if the gun can shoot
+        if (canShoot) 
         {
             if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
             {
@@ -121,11 +121,11 @@ public class Minigun : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        // Calculate a random spread angle based on precision
-        float spreadAngle = (1f - precision) * 10f; // Adjust the multiplier as needed for the spread
+        
+        float spreadAngle = (1f - precision) * 10f; 
         float angle = Random.Range(-spreadAngle, spreadAngle);
 
-        // Apply the spread angle to the firing direction
+        
         Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
     }
@@ -154,9 +154,9 @@ public class Minigun : MonoBehaviour
     private IEnumerator SpinUp()
     {
         isSpinningUp = true;
-        canShoot = false; // Disable shooting during spin up
+        canShoot = false; 
         yield return new WaitForSeconds(spinUpTime);
-        canShoot = true; // Enable shooting after spin up
+        canShoot = true; 
         isSpinningUp = false;
     }
 

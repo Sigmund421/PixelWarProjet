@@ -7,7 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
     public float maxHealth = 100f;
     private float currentHealth;
-    public Slider healthBar; // Assurez-vous d'assigner ce Slider dans l'inspecteur
+    public Slider healthBar;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            // Appeler une fonction pour gérer la mort du joueur
+            
             Die();
         }
         UpdateHealthBar();
@@ -39,7 +39,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Die()
     {
-        // Logique pour gérer la mort du joueur
+        
         Debug.Log("Player is dead!");
     }
 

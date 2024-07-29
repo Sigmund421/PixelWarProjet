@@ -12,7 +12,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [Header("Layers Settings:")]
     [SerializeField] private bool grappleToAll = false;
     [SerializeField] private int grappableLayerNumber = 9;
-    [SerializeField] private LayerMask ignoreLayer; // Ajouter une LayerMask pour ignorer les layers
+    [SerializeField] private LayerMask ignoreLayer; // Ajoute une LayerMask pour ignorer les layers
 
     [Header("Main Camera:")]
     public Camera m_camera;
@@ -63,7 +63,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         m_springJoint2D.enabled = false;
         ignoreLayer = LayerMask.GetMask("Pickup");
         currentLaunchSpeed = baseLaunchSpeed; // Initialisation de la vitesse de propulsion
-        originalGravityScale = m_rigidbody.gravityScale; // Stocker l'échelle de gravité d'origine
+        originalGravityScale = m_rigidbody.gravityScale; // Stocke l'échelle de gravité d'origine
     }
 
     private void Update()
@@ -98,9 +98,9 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            m_rigidbody.gravityScale = originalGravityScale; // Réinitialiser la gravité du joueur après le grappin
-            consecutiveGrapples = 0; // Réinitialiser le compteur de grappinages consécutifs
-            currentLaunchSpeed = baseLaunchSpeed; // Réinitialiser la vitesse de propulsion
+            m_rigidbody.gravityScale = originalGravityScale; // Réinitialise la gravité du joueur après le grappin
+            consecutiveGrapples = 0; // Réinitialise le compteur de grappinages consécutifs
+            currentLaunchSpeed = baseLaunchSpeed; // Réinitialise la vitesse de propulsion
 
             // Conservation de la vélocité
             m_rigidbody.velocity = m_rigidbody.velocity;
@@ -133,7 +133,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, Mathf.Infinity, ~ignoreLayer);
         while (_hit.transform != null && _hit.transform.gameObject.layer == LayerMask.NameToLayer("Pickup"))
         {
-            // Continuer le raycast depuis le point de contact actuel pour ignorer les pickups
+            // Continue le raycast depuis le point de contact actuel pour ignorer les pickups
             _hit = Physics2D.Raycast(_hit.point + distanceVector.normalized * 0.1f, distanceVector.normalized, Mathf.Infinity, ~ignoreLayer);
         }
         if (_hit.transform != null && (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll))
@@ -144,7 +144,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
                 grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                 grappleRope.enabled = true;
 
-                // Augmenter la vitesse de propulsion pour les grappinages consécutifs
+                // Augmente la vitesse de propulsion pour les grappinages consécutifs
                 currentLaunchSpeed = baseLaunchSpeed + (consecutiveGrapples * 2);
                 consecutiveGrapples++;
             }
@@ -184,7 +184,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
                     m_springJoint2D.enabled = true;
                     break;
                 case LaunchType.Transform_Launch:
-                    m_rigidbody.gravityScale = 0; // Désactiver la gravité pendant le grappin
+                    m_rigidbody.gravityScale = 0; // Désactive la gravité pendant le grappin
                     m_rigidbody.velocity = Vector2.zero;
                     break;
             }
