@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeMonkey.Utils;
 using UnityEngine.UI;
 
 public class Laser_Tutorial : MonoBehaviour
@@ -13,9 +14,7 @@ public class Laser_Tutorial : MonoBehaviour
     public LineRenderer m_lineRenderer;
     private Transform m_transform;
 
-    [Header("Rotation:")]
-    [SerializeField] protected bool rotateOverTime = true;
-    [Range(0, 60)][SerializeField] protected float rotationSpeed = 4;
+    
 
     public Transform gunHolder;
     public Transform gunPivot;
@@ -60,8 +59,12 @@ public class Laser_Tutorial : MonoBehaviour
 
     private void Update()
     {
-        Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-        RotateGun(mousePos, true);
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+
+        Vector3 aimDirection = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        gunPivot.eulerAngles = new Vector3(0, 0, angle);
+        Debug.Log(angle);
 
         if (Input.GetKey(KeyCode.Mouse0) && currentAmmo > 0 && !isReloading)
         {
@@ -127,19 +130,7 @@ public class Laser_Tutorial : MonoBehaviour
         m_lineRenderer.SetPosition(1, endPos);
     }
 
-    private void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
-    {
-        Vector3 distanceVector = lookPoint - gunPivot.position;
-        float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
-        if (rotateOverTime && allowRotationOverTime)
-        {
-            gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
-        }
-        else
-        {
-            gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-    }
+    
 
     private void ApplyDamage()
     {
