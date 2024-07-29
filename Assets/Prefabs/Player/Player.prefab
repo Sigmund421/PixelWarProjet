@@ -591,7 +591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704545292566497679}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7245642, w: 0.6892073}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -833,6 +833,7 @@ MonoBehaviour:
   secondaryWeaponSlot: {fileID: 2583839645661516595, guid: 7418de47a884b844c96907a6c0b60ee9, type: 3}
   player: {fileID: 8704545292566497679}
   crosshairImage: {fileID: 0}
+  weapons: []
 --- !u!114 &427687596303140147
 MonoBehaviour:
   m_ObjectHideFlags: 0
