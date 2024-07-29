@@ -167,6 +167,6 @@ MonoBehaviour:
   lifeTime: 2
   damageAmount: 20
   explosionDamage: 10
-  explosionEffect: {fileID: 7041186904873801632, guid: 35b6c7d03342a2d4a99248bbc8e17f6b, type: 3}
-  splashRange: 5
+  explosionEffect: {fileID: 7041186904873801632, guid: fa18c217bed49944c956002f593a6db6, type: 3}
+  splashRange: 10
   maxRange: 100

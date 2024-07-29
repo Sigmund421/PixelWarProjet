@@ -172,7 +172,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   lineRenderer: {fileID: 426584389414240303}
-  damageAmount: 40
+  damageAmount: 50
   fadeTime: 0.5
   fadeDelay: 2
 --- !u!120 &426584389414240303

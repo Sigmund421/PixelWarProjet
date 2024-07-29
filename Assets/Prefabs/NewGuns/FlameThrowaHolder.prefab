@@ -196,7 +196,7 @@ MonoBehaviour:
   flamePrefab: {fileID: 3407379422365555065, guid: a4aa8208edbcc524fbd5fae2f324d271, type: 3}
   firingPoint: {fileID: 4724155916049506602}
   fireRate: 0.01
-  shotsPerReload: 1000
+  shotsPerReload: 700
   reloadTime: 4
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}

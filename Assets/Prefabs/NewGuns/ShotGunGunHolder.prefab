@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
   firingPoint: {fileID: 4724155916049506602}
-  fireRate: 1
+  fireRate: 0.8
   shotsPerReload: 10
   reloadTime: 2
   reloadDelay: 0.5

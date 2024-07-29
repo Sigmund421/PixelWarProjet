@@ -197,7 +197,7 @@ MonoBehaviour:
   firingPoint: {fileID: 4724155916049506602}
   fireRate: 0.1
   shotsPerReload: 50
-  reloadTime: 4
+  reloadTime: 2
   reloadDelay: 0.7
   gunHolder: {fileID: 5150708614009455629}
   gunPivot: {fileID: 8984770374026826393}

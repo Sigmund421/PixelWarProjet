@@ -167,4 +167,4 @@ MonoBehaviour:
   splashRange: 0
   explosionEffect: {fileID: 0}
   maxRange: 200
-  damageAmount: 25
+  damageAmount: 30
