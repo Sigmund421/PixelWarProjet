@@ -22,7 +22,7 @@ public class LaserBulletAwp : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 startPosition;
 
-    private float damageAmount = 20f;
+    [SerializeField] private float damageAmount = 20f;
     private HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
     [SerializeField] private float fadeTime = 0.5f; // Time for the line renderer to fade out
     [SerializeField] private float fadeDelay = 2f; // Delay before starting to fade out the line renderer

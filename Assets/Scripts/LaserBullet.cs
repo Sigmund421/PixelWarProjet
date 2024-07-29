@@ -18,13 +18,13 @@ public class LaserBullet : MonoBehaviour
     [SerializeField] private LayerMask ignoreLayer; // LayerMask to ignore specific layers
 
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private int maxBounces = 2; // Maximum number of bounces
+    
 
     private Vector2 direction;
 
     private Rigidbody2D rb;
     private Vector3 startPosition;
-    private int bounceCount = 0; // Counter for the number of bounces
+    
     [SerializeField] private float damageAmount = 20f;
     [SerializeField] private float fadeTime = 0.25f; // Time for the line renderer to fade out (adjusted for faster fade out)
     [SerializeField] private float destroyDelay = 0.3f; // Delay before destroying the bullet to allow the line renderer to fade out
