@@ -180,10 +180,7 @@ public class LaserBullet : MonoBehaviour
 
     private void DestroyGameObject()
     {
-        // Stop the bullet's movement and hide it
-        rb.velocity = Vector2.zero;
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject);
+
     }
 }

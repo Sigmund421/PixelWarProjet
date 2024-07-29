@@ -58,11 +58,7 @@ public class ShopManager : MonoBehaviour
             // Afficher le curseur
             Cursor.visible = true;
         }
-        else
-        {
-            // Cacher le curseur
-            Cursor.visible = false;
-        }
+        
     }
 
     public bool IsShopOpen()

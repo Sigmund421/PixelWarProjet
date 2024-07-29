@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using CodeMonkey.Utils;
 using UnityEngine.UI;
 
 public class SemiAutoGun : MonoBehaviour
@@ -53,8 +54,12 @@ public class SemiAutoGun : MonoBehaviour
 
     void Update()
     {
-        Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-        RotateGun(mousePos, true);
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+
+        Vector3 aimDirection = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        gunPivot.eulerAngles = new Vector3(0, 0, angle);
+        Debug.Log(angle);
 
         if (canShoot) // Check if the gun can shoot
         {
@@ -117,17 +122,5 @@ public class SemiAutoGun : MonoBehaviour
         }
     }
 
-    private void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
-    {
-        Vector3 distanceVector = lookPoint - gunPivot.position;
-        float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
-        if (rotateOverTime && allowRotationOverTime)
-        {
-            gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
-        }
-        else
-        {
-            gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-    }
+    
 }

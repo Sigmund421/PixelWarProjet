@@ -195,14 +195,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3407379422365555065, guid: 87ee78cce91cfb846a5f8aba304eefc2, type: 3}
   firingPoint: {fileID: 4724155916049506602}
-  fireRate: 0.2
+  fireRate: 0.15
   shotsPerReload: 25
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}
   gunPivot: {fileID: 8984770374026826393}
-  rotateOverTime: 0
-  rotationSpeed: 30
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
   precision: 0.7
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
