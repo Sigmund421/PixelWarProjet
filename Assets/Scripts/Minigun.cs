@@ -26,6 +26,12 @@ public class Minigun : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("Precision:")]
     [Range(0f, 1f)]
@@ -71,6 +77,12 @@ public class Minigun : MonoBehaviour
         {
             Debug.LogError("Camera reference not set in GunBase.");
             return;
+        }
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isSpinningUp && currentAmmo > 0)

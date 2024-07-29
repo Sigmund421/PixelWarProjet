@@ -27,6 +27,12 @@ public class SemiAutoGun : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("Precision:")]
     [Range(0f, 1f)]
@@ -88,6 +94,14 @@ public class SemiAutoGun : MonoBehaviour
                 }
             }
         }
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
+        }
+
+
     }
 
     protected virtual void Shoot()

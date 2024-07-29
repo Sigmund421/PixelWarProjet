@@ -22,9 +22,7 @@ public class GunBase : MonoBehaviour
     public Transform gunPivot;
 
     
-
-    [Header("UI")]
-    [SerializeField] protected Slider ammoBar;
+    
 
     [Header("Precision:")]
     [Range(0f, 1f)]
@@ -40,19 +38,26 @@ public class GunBase : MonoBehaviour
     protected bool isReloading = false;
     protected float reloadTimer;
 
+    // Référence à la barre de munitions globale
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider slider)
+    {
+        globalAmmoBar = slider;
+    }
+
     void Start()
     {
         currentAmmo = shotsPerReload;
-        if (ammoBar != null)
+        if (globalAmmoBar != null)
         {
-            ammoBar.maxValue = shotsPerReload;
-            ammoBar.value = currentAmmo;
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
         }
     }
 
     void Update()
     {
-
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
 
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
@@ -65,8 +70,6 @@ public class GunBase : MonoBehaviour
             Debug.LogError("Camera reference not set in GunBase.");
             return;
         }
-
-        
 
         if (canShoot) // Check if the gun can shoot
         {
@@ -123,11 +126,21 @@ public class GunBase : MonoBehaviour
 
     private void UpdateAmmoBar()
     {
-        if (ammoBar != null)
+        if (globalAmmoBar != null)
         {
-            ammoBar.value = currentAmmo;
+            globalAmmoBar.value = currentAmmo;
         }
     }
 
-    
+    public void Equip()
+    {
+        // Initialiser ou réinitialiser l'état de l'arme lors de l'équipement
+        currentAmmo = shotsPerReload;
+        UpdateAmmoBar();
+    }
+
+    public void Unequip()
+    {
+        // Vous pouvez ajouter ici des actions spécifiques lors du déséquipement de l'arme
+    }
 }

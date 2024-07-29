@@ -30,6 +30,12 @@ public class Laser_Tutorial : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("Layer Settings")]
     [SerializeField] private LayerMask ignoreLayer; // LayerMask to ignore specific layers
@@ -95,6 +101,12 @@ public class Laser_Tutorial : MonoBehaviour
                     StartCoroutine(Reload());
                 }
             }
+        }
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
         }
     }
 

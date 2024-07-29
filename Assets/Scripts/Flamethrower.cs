@@ -21,10 +21,14 @@ public class Flamethrower : MonoBehaviour
     public Transform gunHolder;
     public Transform gunPivot;
 
-    
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("UI")]
     [SerializeField] private Slider ammoBar;
+    private static Slider globalAmmoBar;
 
     [Header("Precision:")]
     [Range(0f, 1f)]
@@ -58,6 +62,12 @@ public class Flamethrower : MonoBehaviour
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         gunPivot.eulerAngles = new Vector3(0, 0, angle);
         Debug.Log(angle);
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
+        }
 
         if (canShoot)
         {
