@@ -168,5 +168,5 @@ MonoBehaviour:
   damageAmount: 20
   explosionDamage: 10
   explosionEffect: {fileID: 7041186904873801632, guid: 35b6c7d03342a2d4a99248bbc8e17f6b, type: 3}
-  splashRange: 3
+  splashRange: 5
   maxRange: 100
