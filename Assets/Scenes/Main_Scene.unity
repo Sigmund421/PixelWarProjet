@@ -14023,6 +14023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6114968955222752704, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 8797744115226207789, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
