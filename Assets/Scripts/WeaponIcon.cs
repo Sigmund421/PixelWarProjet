@@ -7,7 +7,9 @@ public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
+    public Transform originalParent; // Rendre public
     private ShopManager shopManager;
+    public bool isInSlot = false; // Ajouter un booléen pour vérifier si l'icône est dans un slot
 
     private void Awake()
     {
@@ -21,11 +23,18 @@ public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         }
     }
 
+    private void Start()
+    {
+        originalPosition = rectTransform.anchoredPosition;
+        originalParent = transform.parent; // Enregistrement du parent d'origine
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (isInSlot) return; // Désactiver l'interaction si dans un slot
+
         if (shopManager != null && shopManager.IsShopOpen() && shopManager.HasPurchasedWeapon(weaponIndex))
         {
-            originalPosition = rectTransform.anchoredPosition;
             canvasGroup.alpha = 0.6f; // Rendre l'icône semi-transparente
             canvasGroup.blocksRaycasts = false; // Permettre à l'icône d'être déplacée
         }
@@ -33,6 +42,8 @@ public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isInSlot) return; // Désactiver l'interaction si dans un slot
+
         if (shopManager != null && shopManager.IsShopOpen() && shopManager.HasPurchasedWeapon(weaponIndex))
         {
             rectTransform.anchoredPosition += eventData.delta; // Déplacer l'icône avec le curseur
@@ -41,24 +52,32 @@ public class WeaponIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (isInSlot) return; // Désactiver l'interaction si dans un slot
+
         if (shopManager == null || !shopManager.HasPurchasedWeapon(weaponIndex))
         {
             return; // Ne rien faire si l'arme n'a pas été achetée
         }
 
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = 1f; // Restaurer l'opacité complète
-            canvasGroup.blocksRaycasts = true; // Restaurer le blocage des rayons
-        }
+        canvasGroup.alpha = 1f; // Restaurer l'opacité complète
+        canvasGroup.blocksRaycasts = true; // Restaurer le blocage des rayons
 
-        if (shopManager != null)
+        if (!shopManager.OnDropWeapon(this))
         {
-            if (!shopManager.OnDropWeapon(this))
-            {
-                // Revenir à la position initiale si le drop n'a pas été réussi
-                rectTransform.anchoredPosition = originalPosition;
-            }
+            // Revenir à la position initiale si le drop n'a pas été réussi
+            ReturnToOriginalPosition();
         }
+    }
+
+    public void ReturnToOriginalPosition()
+    {
+        transform.SetParent(originalParent); // Restaurer le parent d'origine
+        rectTransform.anchoredPosition = originalPosition; // Restaurer la position d'origine
+        isInSlot = false; // Mettre à jour le booléen
+    }
+
+    public void SetOriginalPosition(Vector2 newPosition)
+    {
+        originalPosition = newPosition;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using CodeMonkey.Utils;
 using UnityEngine.UI;
 
 public class GunBase : MonoBehaviour
@@ -20,9 +21,7 @@ public class GunBase : MonoBehaviour
     public Transform gunHolder;
     public Transform gunPivot;
 
-    [Header("Rotation:")]
-    [SerializeField] private bool rotateOverTime = true;
-    [Range(0, 60)][SerializeField] private float rotationSpeed = 4;
+    
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
@@ -53,14 +52,21 @@ public class GunBase : MonoBehaviour
 
     void Update()
     {
+
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+
+        Vector3 aimDirection = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        gunPivot.eulerAngles = new Vector3(0, 0, angle);
+        Debug.Log(angle);
+
         if (m_camera == null)
         {
             Debug.LogError("Camera reference not set in GunBase.");
             return;
         }
 
-        Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-        RotateGun(mousePos, true);
+        
 
         if (canShoot) // Check if the gun can shoot
         {
@@ -123,21 +129,5 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
-    {
-        Vector3 distanceVector = lookPoint - gunPivot.position;
-        Debug.Log($"Distance Vector: {distanceVector}");
-
-        float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
-        if (rotateOverTime && allowRotationOverTime)
-        {
-            gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
-        }
-        else
-        {
-            gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-
-        Debug.Log($"Gun Rotation Angle: {angle}");
-    }
+    
 }

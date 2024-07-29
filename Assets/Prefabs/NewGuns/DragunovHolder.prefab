@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d26398213822c4a9bfc0b332d7782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3407379422365555065, guid: d29f7672e92fa4d44a85652a077e766a, type: 3}
+  bulletPrefab: {fileID: 3407379422365555065, guid: 9e71ed2b6a9eb394781ccf7b81bc19e0, type: 3}
   firingPoint: {fileID: 4724155916049506602}
   fireRate: 1
   shotsPerReload: 15

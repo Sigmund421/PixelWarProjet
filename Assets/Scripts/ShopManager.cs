@@ -14,11 +14,15 @@ public class ShopManager : MonoBehaviour
     public GameObject player;
     public Image crosshairImage; // Assigner l'image du crosshair dans l'inspecteur
 
+    public List<GameObject> weapons; // List of weapon prefabs
+    private List<bool> purchasedWeapons; // List of purchased weapons
+
     private bool isShopOpen = false;
-    private Dictionary<int, GameObject> purchasedWeapons = new Dictionary<int, GameObject>();
+    private Dictionary<int, Vector2> initialWeaponPositions = new Dictionary<int, Vector2>();
 
     void Start()
     {
+        purchasedWeapons = new List<bool>(new bool[weaponPrefabs.Length]);
         // Si non assigné dans l'inspecteur, trouver le joueur par tag
         if (player == null)
         {
@@ -27,6 +31,13 @@ public class ShopManager : MonoBehaviour
 
         // Cacher l'UI du shop au début
         shopUI.SetActive(false);
+
+        // Stocker les positions initiales des icônes d'armes
+        WeaponIcon[] weaponIcons = shopUI.GetComponentsInChildren<WeaponIcon>();
+        foreach (WeaponIcon icon in weaponIcons)
+        {
+            initialWeaponPositions[icon.weaponIndex] = icon.GetComponent<RectTransform>().anchoredPosition;
+        }
     }
 
     void Update()
@@ -46,13 +57,11 @@ public class ShopManager : MonoBehaviour
         {
             // Afficher le curseur
             Cursor.visible = true;
-            
         }
         else
         {
             // Cacher le curseur
-            Cursor.visible = true;
-            
+            Cursor.visible = false;
         }
     }
 
@@ -63,10 +72,16 @@ public class ShopManager : MonoBehaviour
 
     public void BuyWeapon(int weaponIndex)
     {
-        if (!purchasedWeapons.ContainsKey(weaponIndex) && playerEconomy.SpendMoney(weaponPrices[weaponIndex]))
+        if (weaponIndex < 0 || weaponIndex >= purchasedWeapons.Count)
         {
-            // Ajouter l'arme au dictionnaire des armes achetées
-            purchasedWeapons.Add(weaponIndex, weaponPrefabs[weaponIndex]);
+            Debug.LogError("Invalid weapon index: " + weaponIndex);
+            return;
+        }
+
+        if (!purchasedWeapons[weaponIndex] && playerEconomy.SpendMoney(weaponPrices[weaponIndex]))
+        {
+            // Marquer l'arme comme achetée
+            purchasedWeapons[weaponIndex] = true;
             Debug.Log("Bought weapon: " + weaponPrefabs[weaponIndex].name);
         }
         else
@@ -81,56 +96,78 @@ public class ShopManager : MonoBehaviour
             return false;
 
         RectTransform slotTransform = null;
+        WeaponSlot slot = null;
 
         if (RectTransformUtility.RectangleContainsScreenPoint(primaryWeaponSlot.GetComponent<RectTransform>(), Input.mousePosition))
         {
             slotTransform = primaryWeaponSlot.GetComponent<RectTransform>();
-            EquipWeapon(1, purchasedWeapons[weaponIcon.weaponIndex]);
+            slot = primaryWeaponSlot.GetComponent<WeaponSlot>();
         }
         else if (RectTransformUtility.RectangleContainsScreenPoint(secondaryWeaponSlot.GetComponent<RectTransform>(), Input.mousePosition))
         {
             slotTransform = secondaryWeaponSlot.GetComponent<RectTransform>();
-            EquipWeapon(2, purchasedWeapons[weaponIcon.weaponIndex]);
+            slot = secondaryWeaponSlot.GetComponent<WeaponSlot>();
         }
 
-        if (slotTransform != null)
+        if (slotTransform != null && slot != null)
         {
-            weaponIcon.transform.position = slotTransform.position;
+            slot.OnDrop(new PointerEventData(EventSystem.current) { pointerDrag = weaponIcon.gameObject });
             return true;
         }
 
+        // Revenir à la position initiale si le drop n'a pas été réussi
+        weaponIcon.ReturnToOriginalPosition();
         return false;
     }
 
-    public void EquipWeapon(int slot, GameObject weapon)
+    public void EquipWeapon(int slotIndex, GameObject weaponPrefab)
     {
-        if (slot == 1)
+        if (weaponPrefab == null)
         {
-            if (primaryWeaponSlot.childCount > 0)
-                Destroy(primaryWeaponSlot.GetChild(0).gameObject);
-            Instantiate(weapon, primaryWeaponSlot);
-            player.GetComponent<PlayerWeaponManager>().SetPrimaryWeapon(weapon);
+            Debug.LogError("Weapon prefab is null!");
+            return;
         }
-        else if (slot == 2)
+
+        PlayerWeaponManager weaponManager = FindObjectOfType<PlayerWeaponManager>();
+        if (weaponManager != null)
         {
-            if (secondaryWeaponSlot.childCount > 0)
-                Destroy(secondaryWeaponSlot.GetChild(0).gameObject);
-            Instantiate(weapon, secondaryWeaponSlot);
-            player.GetComponent<PlayerWeaponManager>().SetSecondaryWeapon(weapon);
+            // Ici, nous vérifions si l'arme à équiper est un prefab ou une instance
+            GameObject weaponInstance = weaponPrefab;
+
+            if (slotIndex == 1)
+            {
+                weaponManager.SetPrimaryWeapon(weaponInstance);
+            }
+            else if (slotIndex == 2)
+            {
+                weaponManager.SetSecondaryWeapon(weaponInstance);
+            }
         }
     }
 
-    public bool HasPurchasedWeapon(int weaponIndex)
+
+    public bool HasPurchasedWeapon(int index)
     {
-        return purchasedWeapons.ContainsKey(weaponIndex);
+        return index >= 0 && index < purchasedWeapons.Count && purchasedWeapons[index];
     }
 
-    public GameObject GetPurchasedWeapon(int weaponIndex)
+    public GameObject GetPurchasedWeapon(int index)
     {
-        if (purchasedWeapons.TryGetValue(weaponIndex, out GameObject weapon))
+        if (index >= 0 && index < weaponPrefabs.Length)
         {
-            return weapon;
+            return weaponPrefabs[index];
         }
         return null;
     }
+
+
+    public void ResetWeaponIconPosition(WeaponIcon weaponIcon)
+    {
+        if (initialWeaponPositions.TryGetValue(weaponIcon.weaponIndex, out Vector2 initialPosition))
+        {
+            weaponIcon.transform.SetParent(weaponIcon.originalParent); // Restaurer le parent d'origine
+            weaponIcon.GetComponent<RectTransform>().anchoredPosition = initialPosition; // Restaurer la position d'origine
+        }
+    }
+
 }
