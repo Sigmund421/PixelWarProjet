@@ -162,16 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4349e2fa65bb9ea4d96b058e858694ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 180
+  speed: 200
   lifeTime: 3
-  explosionDamage: 20
+  explosionDamage: 0
   splashRange: 0
   explosionEffect: {fileID: 0}
-  maxRange: 100
+  maxRange: 200
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
   lineRenderer: {fileID: 426584389414240303}
+  damageAmount: 50
   fadeTime: 0.5
   fadeDelay: 2
 --- !u!120 &426584389414240303

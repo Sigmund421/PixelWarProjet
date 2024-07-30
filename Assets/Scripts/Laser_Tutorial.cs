@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class Laser_Tutorial : MonoBehaviour
 {
-    [SerializeField] private float defDistanceRay = 100f; // Maximum range of the laser
-    [SerializeField] private float damageInterval = 0.1f; // Interval between each damage application
-    [SerializeField] private float damageAmount = 10f; // Amount of damage per interval
+    [SerializeField] private float defDistanceRay = 100f; // Maximum range du laser
+    [SerializeField] private float damageInterval = 0.1f; // Intervale entre chaque dégâts
+    [SerializeField] private float damageAmount = 10f; // dégâts
 
     public Transform laserFirePoint;
     public LineRenderer m_lineRenderer;
@@ -30,9 +30,15 @@ public class Laser_Tutorial : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("Layer Settings")]
-    [SerializeField] private LayerMask ignoreLayer; // LayerMask to ignore specific layers
+    [SerializeField] private LayerMask ignoreLayer;
 
     private HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
     private float damageTimer;
@@ -69,7 +75,7 @@ public class Laser_Tutorial : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) && currentAmmo > 0 && !isReloading)
         {
             ShootLaser();
-            m_lineRenderer.enabled = true; // Enable the line renderer when shooting
+            m_lineRenderer.enabled = true; 
 
             damageTimer += Time.deltaTime;
             if (damageTimer >= damageInterval)
@@ -83,9 +89,9 @@ public class Laser_Tutorial : MonoBehaviour
         }
         else
         {
-            m_lineRenderer.enabled = false; // Disable the line renderer when not shooting
-            hitTargets.Clear(); // Clear hit targets when not shooting
-            damageTimer = 0f; // Reset damage timer
+            m_lineRenderer.enabled = false; 
+            hitTargets.Clear(); 
+            damageTimer = 0f; 
 
             if (currentAmmo < shotsPerReload)
             {
@@ -95,6 +101,12 @@ public class Laser_Tutorial : MonoBehaviour
                     StartCoroutine(Reload());
                 }
             }
+        }
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
         }
     }
 

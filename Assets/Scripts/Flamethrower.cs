@@ -21,14 +21,18 @@ public class Flamethrower : MonoBehaviour
     public Transform gunHolder;
     public Transform gunPivot;
 
-    
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("UI")]
     [SerializeField] private Slider ammoBar;
+    private static Slider globalAmmoBar;
 
     [Header("Precision:")]
     [Range(0f, 1f)]
-    [SerializeField] private float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+    [SerializeField] private float precision = 1f; 
 
     public Camera m_camera;
 
@@ -58,6 +62,12 @@ public class Flamethrower : MonoBehaviour
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         gunPivot.eulerAngles = new Vector3(0, 0, angle);
         Debug.Log(angle);
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
+        }
 
         if (canShoot)
         {
@@ -90,11 +100,11 @@ public class Flamethrower : MonoBehaviour
 
     private void Shoot()
     {
-        // Calculate a random spread angle based on precision
-        float spreadAngle = (1f - precision) * 30f; // Adjust the multiplier as needed for the spread
+        
+        float spreadAngle = (1f - precision) * 30f; 
         float angle = Random.Range(-spreadAngle, spreadAngle);
 
-        // Apply the spread angle to the firing direction
+        
         Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
         Instantiate(flamePrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
     }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8676917873668492400}
   - component: {fileID: 802056545767656169}
   - component: {fileID: 6940783178500522480}
-  - component: {fileID: 4794014454550680900}
+  - component: {fileID: 3867496096136073824}
   m_Layer: 15
-  m_Name: PacksBullet
+  m_Name: GrenadeLauncherBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3407379422365555065}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1820188, y: 0.43639508, z: 0}
-  m_LocalScale: {x: 0.6034556, y: 0.8656307, z: 2.149}
+  m_LocalScale: {x: 2.05565, y: 2.05565, z: 4.1113}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8676917873668492400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.9450981, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0, g: 1, b: 0.94117653, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -112,7 +112,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6940783178500522480
 CapsuleCollider2D:
@@ -147,9 +147,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1.11}
+  m_Size: {x: 0.23, y: 0.23}
   m_Direction: 0
---- !u!114 &4794014454550680900
+--- !u!114 &3867496096136073824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,9 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b985f1aa262c2047b02889e6eb2872c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  explosionDelay: 1.4
-  explosionDamage: 8
-  splashRange: 3
-  explosionEffect: {fileID: 7041186904873801632, guid: 34af0f0ef1fa9bd4e8c1e298a375abff, type: 3}
-  damageAmount: 8
+  speed: 30
+  explosionDelay: 1
+  explosionDamage: 20
+  splashRange: 6
+  explosionEffect: {fileID: 5414003704965829573, guid: 0b0a19908173d6b46bc3b8e05efa73f4, type: 3}
+  damageAmount: 20

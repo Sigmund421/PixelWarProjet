@@ -2,59 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Darts : MonoBehaviour
 {
-    [Range(1, 200)]
-    [SerializeField] private float speed = 80f;
-
-    [Range(1, 100)]
-    [SerializeField] private float lifeTime = 3f;
-
+    [SerializeField] private float speed = 10f; // Vitesse de la grenade
+    [SerializeField] private float explosionDelay = 2f; // Délai avant l'explosion
     [SerializeField] private float explosionDamage = 20f;
-    [SerializeField] private float splashRange = 0f;
+    [SerializeField] private float splashRange = 5f;
     [SerializeField] private GameObject explosionEffect; // Effet d'explosion
-
-    [SerializeField] private float maxRange = 10f; // Range max
-
-    protected Rigidbody2D rb;
     public float damageAmount = 20f;
 
-    protected Vector3 startPosition;
+    private Rigidbody2D rb;
 
-    protected virtual void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position; // Save the starting position
-        Destroy(gameObject, lifeTime);
+        rb.velocity = transform.up * speed;
+        StartCoroutine(ExplodeAfterDelay());
     }
 
-    protected virtual void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.velocity = transform.up * speed; //Tir propulsion
+        // Appliquer une chute progressive
+        rb.velocity += Vector2.down * Time.fixedDeltaTime;
+    }
 
-        // Regarde la distance parcourue
-        float distanceTraveled = Vector3.Distance(startPosition, transform.position);
-        if (distanceTraveled >= maxRange)
-        {
-            DestroyGameObject();
-        }
+    private IEnumerator ExplodeAfterDelay()
+    {
+        yield return new WaitForSeconds(explosionDelay);
+        Explode();
+        Destroy(gameObject);
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         
-        ApplyDamage(collision.collider);
+            ApplyDamage(collision.collider);
 
-        if (splashRange > 0)
-        {
-            Explode();
-        }
+            if (splashRange > 0)
+            {
+                Explode();
+            }
 
-        DestroyGameObject();
+            DestroyGameObject();
+
         
+
     }
 
-    protected void ApplyDamage(Collider2D other) //Dégâts, d'abord au bouclier et après à la vie si le bouclier est détruit
+    private void ApplyDamage(Collider2D other)
     {
         ShieldSystem shieldSystem = other.GetComponent<ShieldSystem>();
         HealthSystem healthSystem = other.GetComponent<HealthSystem>();
@@ -72,7 +67,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void Explode() // TOUTES LES EXPLOSIONS DANS LES SCRIPTS ont la même logique, Faire + de dégâts au centre qu'a l'extérieur
+    private void Explode()
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
         var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);
@@ -100,17 +95,14 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected void DestroyGameObject()
-    {
-        Destroy(gameObject);
-    }
-
     private void OnDrawGizmosSelected()
     {
-        if (splashRange > 0)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, splashRange);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, splashRange);
+    }
+
+    private void DestroyGameObject()
+    {
+        Destroy(gameObject);
     }
 }

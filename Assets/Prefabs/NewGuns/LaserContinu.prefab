@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3173441206961427879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 6.31, y: 0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59,8 +59,8 @@ Transform:
   m_GameObject: {fileID: 3729911019307692687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.752, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 1.134, y: 0, z: 0}
+  m_LocalScale: {x: 0.2200289, y: 0.1317832, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4724155916049506602}
@@ -107,8 +107,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5330188, g: 0.815039, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8945fc5db7dc6044db378f1382ece111, type: 3}
+  m_Color: {r: 0.73333335, g: 0.25882354, b: 0.8117648, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -248,8 +248,6 @@ MonoBehaviour:
   damageAmount: 3
   laserFirePoint: {fileID: 4724155916049506602}
   m_lineRenderer: {fileID: 8523004660360619038}
-  rotateOverTime: 0
-  rotationSpeed: 30
   gunHolder: {fileID: 5150708614009455629}
   gunPivot: {fileID: 8984770374026826393}
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
@@ -257,6 +255,9 @@ MonoBehaviour:
   reloadTime: 2
   reloadDelay: 0.5
   ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6770390657757249969
 GameObject:
   m_ObjectHideFlags: 0

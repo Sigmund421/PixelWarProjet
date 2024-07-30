@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3173441206961427879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 6.67, y: 0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57,8 +57,8 @@ Transform:
   m_GameObject: {fileID: 3729911019307692687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.752, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 0.74, z: 1}
+  m_LocalPosition: {x: 0.479, y: 0, z: 0}
+  m_LocalScale: {x: 0.2248596, y: 0.15346944, z: 0.22218}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4724155916049506602}
@@ -105,8 +105,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.10980393, g: 0, b: 0.69803923, a: 1}
+  m_Sprite: {fileID: -8207146450713788509, guid: 2262f408278271248889a3ea3c7e75bf, type: 3}
+  m_Color: {r: 0.70980394, g: 0.5529412, b: 0.20000002, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -195,15 +195,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3407379422365555065, guid: b427dd52ff532d84790f68c77c2c0099, type: 3}
   firingPoint: {fileID: 4724155916049506602}
-  fireRate: 0.5
+  fireRate: 0.4
   shotsPerReload: 25
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}
   gunPivot: {fileID: 8984770374026826393}
-  rotateOverTime: 0
-  rotationSpeed: 30
-  ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
   precision: 0.8
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
   canShoot: 1

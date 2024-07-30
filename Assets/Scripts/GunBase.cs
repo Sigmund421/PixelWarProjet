@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class GunBase : MonoBehaviour
 {
-    [SerializeField] protected GameObject bulletPrefab;
-    [SerializeField] protected Transform firingPoint;
+    [SerializeField] protected GameObject bulletPrefab; // Prefab de la balle correspondante
+    [SerializeField] protected Transform firingPoint; // Point de là où le tire part
     [Range(0.1f, 10f)]
-    [SerializeField] protected float fireRate = 0.2f;
+    [SerializeField] protected float fireRate = 0.2f; 
 
     [Header("Ammo")]
     [Range(1, 100)]
@@ -21,44 +21,49 @@ public class GunBase : MonoBehaviour
     public Transform gunHolder;
     public Transform gunPivot;
 
-    
-
-    [Header("UI")]
-    [SerializeField] protected Slider ammoBar;
+    // PETITE INFO : Tous les scripts d'armes, que ce soit celles qui dérivent de ce script ou les autres (Minigun, FlameThrower...) ont quasiment la même logique
+    // Je dis ça pour pas avoir à annoter chaque scripts un à un. J'annote pas tout, l'anglais parle de lui même.
 
     [Header("Precision:")]
     [Range(0f, 1f)]
-    [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+    [SerializeField] protected float precision = 1f; // 1 est precision parfaite
 
     public Camera m_camera;
 
     [Header("Shooting")]
-    [SerializeField] protected bool canShoot = true; // New property to determine if the gun can shoot
+    [SerializeField] protected bool canShoot = true;
 
     protected float fireTimer;
     protected int currentAmmo;
     protected bool isReloading = false;
     protected float reloadTimer;
 
+    
+    private static Slider globalAmmoBar; // Référence à la barre de munitions globale
+
+    public static void SetGlobalAmmoBar(Slider slider)
+    {
+        globalAmmoBar = slider;
+    }
+
     void Start()
     {
         currentAmmo = shotsPerReload;
-        if (ammoBar != null)
+        if (globalAmmoBar != null)
         {
-            ammoBar.maxValue = shotsPerReload;
-            ammoBar.value = currentAmmo;
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
         }
     }
 
     void Update()
     {
-
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
 
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         gunPivot.eulerAngles = new Vector3(0, 0, angle);
-        Debug.Log(angle);
+        Debug.Log(angle); // Les 4 lignes + celle ci c'est la logique qui fait que l'arme suit le curseur de la souris
 
         if (m_camera == null)
         {
@@ -66,9 +71,7 @@ public class GunBase : MonoBehaviour
             return;
         }
 
-        
-
-        if (canShoot) // Check if the gun can shoot
+        if (canShoot) // Logique d'application de tir, de rechargement et de munitions
         {
             if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
             {
@@ -99,16 +102,16 @@ public class GunBase : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        // Calculate a random spread angle based on precision
-        float spreadAngle = (1f - precision) * 10f; // Adjust the multiplier as needed for the spread
+        // Champ pour la précision plus ou moins élevée
+        float spreadAngle = (1f - precision) * 10f; 
         float angle = Random.Range(-spreadAngle, spreadAngle);
 
-        // Apply the spread angle to the firing direction
+        // Le champ de précision est mis pour la trajectoire de tir
         Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
     }
 
-    private IEnumerator Reload()
+    private IEnumerator Reload() //Reloading de manière à recharger automatiquement les balles si on ne tire pas
     {
         isReloading = true;
         while (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
@@ -123,11 +126,21 @@ public class GunBase : MonoBehaviour
 
     private void UpdateAmmoBar()
     {
-        if (ammoBar != null)
+        if (globalAmmoBar != null)
         {
-            ammoBar.value = currentAmmo;
+            globalAmmoBar.value = currentAmmo;
         }
     }
 
-    
+    public void Equip()
+    {
+        // Initialise ou réinitialise l'état de l'arme lors de l'équipement
+        currentAmmo = shotsPerReload;
+        UpdateAmmoBar();
+    }
+
+    public void Unequip()
+    {
+        
+    }
 }

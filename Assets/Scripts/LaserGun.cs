@@ -27,6 +27,12 @@ public class LaserGun : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     public Camera m_camera;
     [SerializeField] protected bool canShoot = true;
@@ -94,6 +100,13 @@ public class LaserGun : MonoBehaviour
             // If not shooting, ensure the laser line renderer is disabled
             m_lineRenderer.enabled = false;
         }
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
+        }
+
     }
 
     private void ShootLaser()

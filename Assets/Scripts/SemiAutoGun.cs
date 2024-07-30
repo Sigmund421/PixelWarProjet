@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using CodeMonkey.Utils;
 using UnityEngine.UI;
 
 public class SemiAutoGun : MonoBehaviour
@@ -26,15 +27,21 @@ public class SemiAutoGun : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] protected Slider ammoBar;
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("Precision:")]
     [Range(0f, 1f)]
-    [SerializeField] protected float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+    [SerializeField] protected float precision = 1f; //1 precision parfaite
 
     public Camera m_camera;
 
     [Header("Shooting")]
-    [SerializeField] protected bool canShoot = true; // New property to determine if the gun can shoot
+    [SerializeField] protected bool canShoot = true;
 
     protected float fireTimer;
     protected int currentAmmo;
@@ -50,13 +57,17 @@ public class SemiAutoGun : MonoBehaviour
             ammoBar.value = currentAmmo;
         }
     }
-
+    
     void Update()
     {
-        Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-        RotateGun(mousePos, true);
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
 
-        if (canShoot) // Check if the gun can shoot
+        Vector3 aimDirection = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        gunPivot.eulerAngles = new Vector3(0, 0, angle);
+        Debug.Log(angle); // les 4 lignes au dessus + celle là c'est pour que l'arme suive le curseur
+
+        if (canShoot) 
         {
             if (Input.GetMouseButtonDown(0) && fireTimer <= 0f && currentAmmo > 0)
             {
@@ -83,15 +94,23 @@ public class SemiAutoGun : MonoBehaviour
                 }
             }
         }
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
+        }
+
+
     }
 
     protected virtual void Shoot()
     {
-        // Calculate a random spread angle based on precision
-        float spreadAngle = (1f - precision) * 10f; // Adjust the multiplier as needed for the spread
+        // Calcul un champ pour définir la précision haute ou faible
+        float spreadAngle = (1f - precision) * 10f; 
         float angle = Random.Range(-spreadAngle, spreadAngle);
 
-        // Apply the spread angle to the firing direction
+        // Le champ de précision est appliqué au firingPoint
         Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
     }
@@ -117,17 +136,5 @@ public class SemiAutoGun : MonoBehaviour
         }
     }
 
-    private void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
-    {
-        Vector3 distanceVector = lookPoint - gunPivot.position;
-        float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
-        if (rotateOverTime && allowRotationOverTime)
-        {
-            gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
-        }
-        else
-        {
-            gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-    }
+    
 }

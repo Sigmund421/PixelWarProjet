@@ -5,42 +5,47 @@ using UnityEngine.UI;
 
 public class Minigun : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firingPoint;
+    [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] protected Transform firingPoint;
     [Range(0.1f, 10f)]
-    [SerializeField] private float fireRate = 0.2f;
+    [SerializeField] protected float fireRate = 0.2f;
 
     [Header("Ammo")]
     [Range(1, 100)]
-    [SerializeField] private int shotsPerReload = 25;
+    [SerializeField] protected int shotsPerReload = 25;
     [Range(0.1f, 5f)]
-    [SerializeField] private float reloadTime = 2f;
+    [SerializeField] protected float reloadTime = 2f;
     [Range(0.1f, 5f)]
-    [SerializeField] private float reloadDelay = 0.5f;
-
-    [Header("Minigun Specifics")]
-    [SerializeField] private float spinUpTime = 1f; // Time to wait before starting to shoot
+    [SerializeField] protected float reloadDelay = 0.5f;
 
     public Transform gunHolder;
     public Transform gunPivot;
 
-    
+    [SerializeField] private float spinUpTime = 1f;
+    private bool isSpinningUp = false;
 
     [Header("UI")]
-    [SerializeField] private Slider ammoBar;
+    [SerializeField] protected Slider ammoBar;
+    private static Slider globalAmmoBar;
+
+    public static void SetGlobalAmmoBar(Slider ammoBar)
+    {
+        globalAmmoBar = ammoBar;
+    }
 
     [Header("Precision:")]
     [Range(0f, 1f)]
-    [SerializeField] private float precision = 1f; // 1 is perfect precision, 0 is very inaccurate
+    [SerializeField] protected float precision = 1f; 
 
     public Camera m_camera;
 
-    private float fireTimer;
-    private int currentAmmo;
-    private bool isReloading = false;
-    private float reloadTimer;
-    private bool isSpinningUp = false;
-    private bool canShoot = false;
+    [Header("Shooting")]
+    [SerializeField] protected bool canShoot = true; 
+
+    protected float fireTimer;
+    protected int currentAmmo;
+    protected bool isReloading = false;
+    protected float reloadTimer;
 
     void Start()
     {
@@ -50,10 +55,17 @@ public class Minigun : MonoBehaviour
             ammoBar.maxValue = shotsPerReload;
             ammoBar.value = currentAmmo;
         }
+
+        if (isSpinningUp == true)
+        {
+            canShoot= false;
+        }
+
     }
 
     void Update()
     {
+
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
 
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
@@ -61,50 +73,59 @@ public class Minigun : MonoBehaviour
         gunPivot.eulerAngles = new Vector3(0, 0, angle);
         Debug.Log(angle);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isSpinningUp && currentAmmo > 0 && !isReloading)
+        if (m_camera == null)
+        {
+            Debug.LogError("Camera reference not set in GunBase.");
+            return;
+        }
+
+        if (globalAmmoBar != null)
+        {
+            globalAmmoBar.maxValue = shotsPerReload;
+            globalAmmoBar.value = currentAmmo;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isSpinningUp && currentAmmo > 0)
         {
             StartCoroutine(SpinUp());
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0 && !isReloading && canShoot)
+        if (canShoot) 
         {
-            Shoot();
-            fireTimer = fireRate;
-            currentAmmo--;
-            UpdateAmmoBar();
-            reloadTimer = 0f;
-        }
-        else
-        {
-            fireTimer -= Time.deltaTime;
-        }
-
-        if (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
-        {
-            reloadTimer += Time.deltaTime;
-            if (reloadTimer >= reloadDelay && !isReloading)
+            if (Input.GetKey(KeyCode.Mouse0) && fireTimer <= 0f && currentAmmo > 0)
             {
-                StartCoroutine(Reload());
+                Shoot();
+                fireTimer = fireRate;
+                currentAmmo--;
+                UpdateAmmoBar();
+                reloadTimer = 0f;
+            }
+            else
+            {
+                fireTimer -= Time.deltaTime;
+            }
+
+            if (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
+            {
+                reloadTimer += Time.deltaTime;
+                if (reloadTimer >= reloadDelay)
+                {
+                    if (!isReloading)
+                    {
+                        StartCoroutine(Reload());
+                    }
+                }
             }
         }
     }
 
-    private IEnumerator SpinUp()
-    {
-        isSpinningUp = true;
-        canShoot = false; // Disable shooting during spin up
-        yield return new WaitForSeconds(spinUpTime);
-        canShoot = true; // Enable shooting after spin up
-        isSpinningUp = false;
-    }
-
     protected virtual void Shoot()
     {
-        // Calculate a random spread angle based on precision
-        float spreadAngle = (1f - precision) * 10f; // Adjust the multiplier as needed for the spread
+        
+        float spreadAngle = (1f - precision) * 10f; 
         float angle = Random.Range(-spreadAngle, spreadAngle);
 
-        // Apply the spread angle to the firing direction
+        
         Quaternion spreadRotation = Quaternion.Euler(0, 0, angle);
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation * spreadRotation);
     }
@@ -130,5 +151,13 @@ public class Minigun : MonoBehaviour
         }
     }
 
-    
+    private IEnumerator SpinUp()
+    {
+        isSpinningUp = true;
+        canShoot = false; 
+        yield return new WaitForSeconds(spinUpTime);
+        canShoot = true; 
+        isSpinningUp = false;
+    }
+
 }

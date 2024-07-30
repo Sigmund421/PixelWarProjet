@@ -14,21 +14,21 @@ public class LaserBullet : MonoBehaviour
     [SerializeField] private float splashRange = 0f;
     [SerializeField] private GameObject explosionEffect; // Effet d'explosion
 
-    [SerializeField] private float maxRange = 10f; // Maximum range of the bullet
-    [SerializeField] private LayerMask ignoreLayer; // LayerMask to ignore specific layers
+    [SerializeField] private float maxRange = 10f; // Max Range de la balle
+    [SerializeField] private LayerMask ignoreLayer; // Ignore des layers
 
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private int maxBounces = 2; // Maximum number of bounces
+    
 
     private Vector2 direction;
 
     private Rigidbody2D rb;
     private Vector3 startPosition;
-    private int bounceCount = 0; // Counter for the number of bounces
+    
     [SerializeField] private float damageAmount = 20f;
-    [SerializeField] private float fadeTime = 0.25f; // Time for the line renderer to fade out (adjusted for faster fade out)
-    [SerializeField] private float destroyDelay = 0.3f; // Delay before destroying the bullet to allow the line renderer to fade out
-    [SerializeField] private float startFadeTime = 0.5f; // Time to wait before starting the fade out
+    [SerializeField] private float fadeTime = 0.25f; // Temps du fade du line renderer
+    [SerializeField] private float destroyDelay = 0.3f; // Delay avant de détruire la balle
+    [SerializeField] private float startFadeTime = 0.5f; // Temps avant de fade
 
     private void Awake()
     {
@@ -38,20 +38,20 @@ public class LaserBullet : MonoBehaviour
     private void Start()
     {
         
-        startPosition = transform.position; // Save the starting position
+        startPosition = transform.position; 
         Destroy(gameObject, lifeTime + destroyDelay);
         
 
-        // Initialize the line renderer positions
+        
         if (lineRenderer != null)
         {
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, transform.position);
-            lineRenderer.enabled = true; // Enable the line renderer
+            lineRenderer.enabled = true; 
         }
 
-        // Start the coroutine to fade out the line renderer after a delay
+        
         StartCoroutine(StartFadeOutAfterDelay());
     }
 
@@ -59,14 +59,14 @@ public class LaserBullet : MonoBehaviour
     {
         rb.velocity = transform.up * speed;
 
-        // Update the line renderer to follow the bullet
+        // Line renderer suit la balle
         if (lineRenderer != null)
         {
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, startPosition);
         }
 
-        // Check the distance traveled
+        // Check la dustance parcourue
         float distanceTraveled = Vector3.Distance(startPosition, transform.position);
         if (distanceTraveled >= maxRange)
         {
@@ -158,7 +158,7 @@ public class LaserBullet : MonoBehaviour
             yield return null;
         }
 
-        // Destroy the game object after the line renderer has faded out
+        
         Destroy(gameObject);
     }
 
@@ -180,10 +180,7 @@ public class LaserBullet : MonoBehaviour
 
     private void DestroyGameObject()
     {
-        // Stop the bullet's movement and hide it
-        rb.velocity = Vector2.zero;
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject);
+
     }
 }
