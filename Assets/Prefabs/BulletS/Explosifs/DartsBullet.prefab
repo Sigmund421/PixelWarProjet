@@ -165,5 +165,5 @@ MonoBehaviour:
   explosionDelay: 2
   explosionDamage: 8
   splashRange: 10
-  explosionEffect: {fileID: 7041186904873801632, guid: 54d5c5add23e6a44088bb6bd21a94ae0, type: 3}
+  explosionEffect: {fileID: 5414003704965829573, guid: 568cc9260dfb1a1408479f2b283dd2e7, type: 3}
   damageAmount: 20

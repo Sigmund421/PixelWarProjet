@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &802056545767656169
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   explosionDelay: 1
-  explosionDamage: 15
-  splashRange: 10
-  explosionEffect: {fileID: 7041186904873801632, guid: 9782042b4a4d0114fb7dd6417c96ff24, type: 3}
-  damageAmount: 15
+  explosionDamage: 20
+  splashRange: 6
+  explosionEffect: {fileID: 5414003704965829573, guid: 0b0a19908173d6b46bc3b8e05efa73f4, type: 3}
+  damageAmount: 20

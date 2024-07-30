@@ -165,8 +165,8 @@ MonoBehaviour:
   maxSpeed: 100
   acceleration: 50
   lifeTime: 2
-  damageAmount: 20
+  damageAmount: 50
   explosionDamage: 10
-  explosionEffect: {fileID: 7041186904873801632, guid: fa18c217bed49944c956002f593a6db6, type: 3}
-  splashRange: 10
+  explosionEffect: {fileID: 5414003704965829573, guid: 27c784c7299eda3488ad3a988cff2394, type: 3}
+  splashRange: 50
   maxRange: 100
