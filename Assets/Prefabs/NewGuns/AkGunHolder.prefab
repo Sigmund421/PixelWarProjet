@@ -196,7 +196,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3407379422365555065, guid: 3574d80806a99bb4e841c5e773624f61, type: 3}
   firingPoint: {fileID: 4724155916049506602}
   fireRate: 0.15
-  shotsPerReload: 25
+  shotsPerReload: 20
   reloadTime: 2
   reloadDelay: 0.5
   gunHolder: {fileID: 5150708614009455629}

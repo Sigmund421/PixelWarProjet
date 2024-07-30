@@ -51,10 +51,6 @@ public class PlayerWeaponManager : MonoBehaviour
         {
             Flamethrower.SetGlobalAmmoBar(globalAmmoBar);
         }
-        else if (currentWeapon.GetComponent<Laser_Tutorial>() != null)
-        {
-            Laser_Tutorial.SetGlobalAmmoBar(globalAmmoBar);
-        }
         else if (currentWeapon.GetComponent<LaserGun>() != null)
         {
             LaserGun.SetGlobalAmmoBar(globalAmmoBar);

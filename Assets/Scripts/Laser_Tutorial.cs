@@ -20,22 +20,22 @@ public class Laser_Tutorial : MonoBehaviour
     public Transform gunPivot;
     public Camera m_camera;
 
-    [Header("Ammo")]
-    [Range(1, 100)]
-    [SerializeField] protected int shotsPerReload = 25;
-    [Range(0.1f, 5f)]
-    [SerializeField] protected float reloadTime = 2f;
-    [Range(0.1f, 5f)]
-    [SerializeField] protected float reloadDelay = 0.5f;
+    //[Header("Ammo")]
+    //[Range(1, 100)]
+    //[SerializeField] protected int shotsPerReload = 25;
+    //[Range(0.1f, 5f)]
+    //[SerializeField] protected float reloadTime = 2f;
+    //[Range(0.1f, 5f)]
+    //[SerializeField] protected float reloadDelay = 0.5f;
 
-    [Header("UI")]
-    [SerializeField] protected Slider ammoBar;
-    private static Slider globalAmmoBar;
+    //[Header("UI")]
+    //[SerializeField] protected Slider ammoBar;
+    //private static Slider globalAmmoBar;
 
-    public static void SetGlobalAmmoBar(Slider ammoBar)
-    {
-        globalAmmoBar = ammoBar;
-    }
+    //public static void SetGlobalAmmoBar(Slider ammoBar)
+    //{
+    //    globalAmmoBar = ammoBar;
+    //}
 
     [Header("Layer Settings")]
     [SerializeField] private LayerMask ignoreLayer;
@@ -43,9 +43,9 @@ public class Laser_Tutorial : MonoBehaviour
     private HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
     private float damageTimer;
 
-    private int currentAmmo;
-    private bool isReloading = false;
-    private float reloadTimer;
+    //private int currentAmmo;
+    //private bool isReloading = false;
+    //private float reloadTimer;
 
     private void Awake()
     {
@@ -55,12 +55,12 @@ public class Laser_Tutorial : MonoBehaviour
     private void Start()
     {
         ignoreLayer = LayerMask.GetMask("Pickup");
-        currentAmmo = shotsPerReload;
-        if (ammoBar != null)
-        {
-            ammoBar.maxValue = shotsPerReload;
-            ammoBar.value = currentAmmo;
-        }
+        //currentAmmo = shotsPerReload;
+        //if (ammoBar != null)
+        //{
+        //    ammoBar.maxValue = shotsPerReload;
+        //    ammoBar.value = currentAmmo;
+        //}
     }
 
     private void Update()
@@ -72,7 +72,7 @@ public class Laser_Tutorial : MonoBehaviour
         gunPivot.eulerAngles = new Vector3(0, 0, angle);
         Debug.Log(angle);
 
-        if (Input.GetKey(KeyCode.Mouse0) && currentAmmo > 0 && !isReloading)
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             ShootLaser();
             m_lineRenderer.enabled = true; 
@@ -82,10 +82,10 @@ public class Laser_Tutorial : MonoBehaviour
             {
                 ApplyDamage();
                 damageTimer = 0f;
-                currentAmmo--;
-                UpdateAmmoBar();
+                //currentAmmo--;
+                //UpdateAmmoBar();
             }
-            reloadTimer = 0f;
+            //reloadTimer = 0f;
         }
         else
         {
@@ -93,21 +93,21 @@ public class Laser_Tutorial : MonoBehaviour
             hitTargets.Clear(); 
             damageTimer = 0f; 
 
-            if (currentAmmo < shotsPerReload)
-            {
-                reloadTimer += Time.deltaTime;
-                if (reloadTimer >= reloadDelay && !isReloading)
-                {
-                    StartCoroutine(Reload());
-                }
-            }
+            //if (currentAmmo < shotsPerReload)
+            //{
+            //    reloadTimer += Time.deltaTime;
+            //    if (reloadTimer >= reloadDelay && !isReloading)
+            //    {
+            //        StartCoroutine(Reload());
+            //    }
+            //}
         }
 
-        if (globalAmmoBar != null)
-        {
-            globalAmmoBar.maxValue = shotsPerReload;
-            globalAmmoBar.value = currentAmmo;
-        }
+        //if (globalAmmoBar != null)
+        //{
+        //    globalAmmoBar.maxValue = shotsPerReload;
+        //    globalAmmoBar.value = currentAmmo;
+        //}
     }
 
     void ShootLaser()
@@ -165,24 +165,24 @@ public class Laser_Tutorial : MonoBehaviour
         }
     }
 
-    private IEnumerator Reload()
-    {
-        isReloading = true;
-        while (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
-        {
-            yield return new WaitForSeconds(reloadTime / shotsPerReload);
-            currentAmmo++;
-            UpdateAmmoBar();
-        }
-        isReloading = false;
-        reloadTimer = 0f;
-    }
+    //private IEnumerator Reload()
+    //{
+    //    isReloading = true;
+    //    while (currentAmmo < shotsPerReload && !Input.GetKey(KeyCode.Mouse0))
+    //    {
+    //        yield return new WaitForSeconds(reloadTime / shotsPerReload);
+    //        currentAmmo++;
+    //        UpdateAmmoBar();
+    //    }
+    //    isReloading = false;
+    //    reloadTimer = 0f;
+    //}
 
-    private void UpdateAmmoBar()
-    {
-        if (ammoBar != null)
-        {
-            ammoBar.value = currentAmmo;
-        }
-    }
+    //private void UpdateAmmoBar()
+    //{
+    //    if (ammoBar != null)
+    //    {
+    //        ammoBar.value = currentAmmo;
+    //    }
+    //}
 }

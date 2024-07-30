@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8945fc5db7dc6044db378f1382ece111, type: 3}
+  m_Sprite: {fileID: 7002116807392196692, guid: 393021b790fe7bd4484e9f84c76ad03e, type: 3}
   m_Color: {r: 0.73333335, g: 0.25882354, b: 0.8117648, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -251,10 +251,6 @@ MonoBehaviour:
   gunHolder: {fileID: 5150708614009455629}
   gunPivot: {fileID: 8984770374026826393}
   m_camera: {fileID: 4459749150634194360, guid: 418cccaeddbfaab4ea3e3939584525b0, type: 3}
-  shotsPerReload: 30
-  reloadTime: 2
-  reloadDelay: 0.5
-  ammoBar: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
