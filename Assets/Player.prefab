@@ -653,6 +653,7 @@ GameObject:
   - component: {fileID: 297272832239769371}
   - component: {fileID: 4281152371114421528}
   - component: {fileID: 2359086979173899352}
+  - component: {fileID: 310641624429907746}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -944,6 +945,28 @@ MonoBehaviour:
   secondaryWeapon: {fileID: 0}
   weaponHolder: {fileID: 4619696630618953354}
   globalAmmoBar: {fileID: 5798108834722932667}
+--- !u!114 &310641624429907746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678776554783854182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4283740071939191962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,6 +2207,14 @@ PrefabInstance:
     - target: {fileID: 1058850953955939188, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
       propertyPath: m_Name
       value: AmmoBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
+      propertyPath: m_Value
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716977115188672699, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
+      propertyPath: m_MaxValue
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 4378920787609305246, guid: eee7aa7d701ea964e98f22b532bbb5cd, type: 3}
       propertyPath: m_AnchorMax.x

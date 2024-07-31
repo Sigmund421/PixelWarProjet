@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public float airControlFactor = 0.8f; // Facteur de contrôle en l'air
     public float maxSpeed = 18f; // Vitesse maximale
     public float decelerationFactor = 0.95f; // Facteur de décélération pour éviter de glisser mais laisser ça smooth
+
+    PhotonView view;
+
 
     private float moveInput;
 
@@ -30,61 +34,74 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponentInChildren<Collider2D>();
+        view = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        moveInput = Input.GetAxis("Horizontal");
-
-        isGround = _col.IsTouchingLayers(ground);
-
-        // Applique le multiplicateur de gravité pendant la chute
-        if (_rb.velocity.y < 0 && !isGround)
+        if (view.IsMine)
         {
-            _rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            moveInput = Input.GetAxis("Horizontal");
+
+            isGround = _col.IsTouchingLayers(ground);
+
+            // Applique le multiplicateur de gravité pendant la chute
+            if (_rb.velocity.y < 0 && !isGround)
+            {
+                _rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+
+            // Le saut
+            if (isGround && Input.GetKeyDown(KeyCode.Space))
+            {
+                _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
 
-        // Le saut
-        if (isGround && Input.GetKeyDown(KeyCode.Space))
-        {
-            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
+
+        
     }
 
     private void FixedUpdate()
     {
-        // Mouvement horizontal
-        if (grapplingGun.grappleRope.isGrappling)
+        if (view.IsMine)
         {
-            _rb.AddForce(new Vector2(moveInput * speed * grappleMovementSpeedFactor, 0), ForceMode2D.Force);
-        }
-        else
-        {
-            float controlFactor = isGround ? 1f : airControlFactor;
-
-            if (moveInput != 0)
+            // Mouvement horizontal
+            if (grapplingGun.grappleRope.isGrappling)
             {
-                // Applique une force instantanée pour atteindre la vitesse maximale 
-                _rb.velocity = new Vector2(moveInput * speed * controlFactor, _rb.velocity.y);
+                _rb.AddForce(new Vector2(moveInput * speed * grappleMovementSpeedFactor, 0), ForceMode2D.Force);
             }
             else
             {
-                // Applique une légère décélération pour un arrêt smoooooth
-                _rb.velocity = new Vector2(_rb.velocity.x * decelerationFactor, _rb.velocity.y);
+                float controlFactor = isGround ? 1f : airControlFactor;
+
+                if (moveInput != 0)
+                {
+                    // Applique une force instantanée pour atteindre la vitesse maximale 
+                    _rb.velocity = new Vector2(moveInput * speed * controlFactor, _rb.velocity.y);
+                }
+                else
+                {
+                    // Applique une légère décélération pour un arrêt smoooooth
+                    _rb.velocity = new Vector2(_rb.velocity.x * decelerationFactor, _rb.velocity.y);
+                }
+
+                // Limite la vitesse maximale
+                if (Mathf.Abs(_rb.velocity.x) > maxSpeed)
+                {
+                    _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * maxSpeed, _rb.velocity.y);
+                }
             }
 
-            // Limite la vitesse maximale
-            if (Mathf.Abs(_rb.velocity.x) > maxSpeed)
+            // Arrête instantanément le mouvement horizontal lorsque les touches de mouvement sont relâchées
+            if (isGround && moveInput == 0)
             {
-                _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * maxSpeed, _rb.velocity.y);
+                _rb.velocity = new Vector2(0, _rb.velocity.y);
             }
         }
 
-        // Arrête instantanément le mouvement horizontal lorsque les touches de mouvement sont relâchées
-        if (isGround && moveInput == 0)
-        {
-            _rb.velocity = new Vector2(0, _rb.velocity.y);
-        }
+
+        
     }
 
     public void EnableControls()
