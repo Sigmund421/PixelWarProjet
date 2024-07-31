@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c59a8eb2ceecc05469b6dcbe8f17d087, type: 2}
+  - {fileID: 2100000, guid: 926ccfaa068084946bec2c5891f379f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,6 +164,6 @@ MonoBehaviour:
   speed: 30
   explosionDelay: 1
   explosionDamage: 20
-  splashRange: 6
+  splashRange: 4
   explosionEffect: {fileID: 5414003704965829573, guid: 0b0a19908173d6b46bc3b8e05efa73f4, type: 3}
   damageAmount: 20

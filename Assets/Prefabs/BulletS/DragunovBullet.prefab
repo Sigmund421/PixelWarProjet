@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c59a8eb2ceecc05469b6dcbe8f17d087, type: 2}
+  - {fileID: 2100000, guid: 886a744f0c35e294292f2f0257fd1288, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -285,7 +285,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   lineRenderer: {fileID: 7205627697713272505}
-  maxBounces: 2
   damageAmount: 20
   fadeTime: 0.1
   destroyDelay: 2
