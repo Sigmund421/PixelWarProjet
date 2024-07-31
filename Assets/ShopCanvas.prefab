@@ -769,7 +769,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -2520,7 +2520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -2985,7 +2985,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -3438,7 +3438,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -4632,7 +4632,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -5247,7 +5247,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -5712,7 +5712,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -5845,7 +5845,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -5978,7 +5978,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -6190,7 +6190,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -6402,7 +6402,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
@@ -6930,7 +6930,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 297272832239769371, guid: 7dc02c32888881a4d9e3cbb705f5dd24, type: 3}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 3
